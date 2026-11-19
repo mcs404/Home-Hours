@@ -489,10 +489,8 @@
                 <div class="bg-inputBg p-4 rounded-xl border border-gray-700 flex justify-between items-center">
                     <div>
                         <h4 class="font-bold text-white text-base">حالة النظام</h4>
-                        <p class="text-xs text-gray-400">تشغيل أو إيقاف النظام يدوياً</p>
                     </div>
                     <div class="flex items-center gap-3">
-                        <span id="system-status-label" class="font-bold text-sm text-green-400">النظام مفعل حالياً</span>
                         <button id="system-toggle-btn" onclick="toggleSystemState()" class="bg-red-700 hover:bg-red-600 text-white px-4 py-2 rounded-xl text-sm font-bold transition flex items-center gap-2">
                             <i class="fa-solid fa-power-off"></i>
                             <span id="system-btn-text">النظام</span>
@@ -743,10 +741,6 @@
             if (isSystemActive) {
                 mainContainer.classList.remove('hidden');
                 disabledBanner.classList.add('hidden');
-                if (statusLabel) {
-                    statusLabel.textContent = "النظام مفعل حالياً";
-                    statusLabel.className = "font-bold text-sm text-green-400";
-                }
                 if (btnText) btnText.textContent = "إيقاف";
                 if (toggleBtn) toggleBtn.className = "bg-red-700 hover:bg-red-600 text-white px-4 py-2 rounded-xl text-sm font-bold transition flex items-center gap-2";
             } else {
@@ -757,11 +751,6 @@
                 if (confirmModal) confirmModal.classList.add('hidden');
                 const adminPanelModal = document.getElementById('admin-panel-modal');
                 if (adminPanelModal) adminPanelModal.classList.add('hidden');
-                
-                if (statusLabel) {
-                    statusLabel.textContent = "النظام مغلق حالياً";
-                    statusLabel.className = "font-bold text-sm text-red-400";
-                }
                 if (btnText) btnText.textContent = "تشغيل";
                 if (toggleBtn) toggleBtn.className = "bg-emerald-600 hover:bg-emerald-500 text-white px-4 py-2 rounded-xl text-sm font-bold transition flex items-center gap-2";
             }
