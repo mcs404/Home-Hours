@@ -53,7 +53,7 @@
 
         input[type=range] {
             -webkit-appearance: none;
-            background: #1f2533;
+            background: #475569;
             border-radius: 8px;
             height: 10px;
         }
@@ -111,11 +111,115 @@
             color: #0f172a !important;
             border-color: #cbd5e1 !important;
         }
+        input[type=range] {
+            -webkit-appearance: none;
+            appearance: none;
+            background: #475569;
+            border-radius: 8px;
+            height: 10px;
+            outline: none;
+        }
+        body.light-theme input[type=range] {
+            background: #cbd5e1; 
+        }
+        input[type=range]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            height: 22px;
+            width: 22px;
+            border-radius: 50%;
+            background: #22c55e;
+            cursor: pointer;
+            box-shadow: 0 0 10px rgba(34, 197, 94, 0.5);
+            transition: transform 0.1s ease;
+        }
+        input[type=range]::-webkit-slider-thumb:hover {
+            transform: scale(1.15);
+  
+        }
+      * تخصيص أيقونة وإطار الشعار في الوضع النهاري للأخضر الداكن */
+        body.light-theme header .w-9.h-9 {
+            background-color: rgba(22, 163, 74, 0.15) !important;
+            border-color: rgba(22, 163, 74, 0.4) !important;
+        }
+        body.light-theme header .w-9.h-9 i {
+            color: #15803d !important; 
+        }
+
+        body.light-theme #admin-auth-modal button[type="button"],
+        body.light-theme #confirm-modal button.bg-gray-700 {
+            color: #ffffff !important;
+        }
+
+        body.light-theme #admin-auth-modal button[type="submit"],
+        body.light-theme #confirm-modal button.bg-accentGreen {
+            color: #ffffff !important;
+        }
+      body.light-theme #confirm-modal .bg-inputBg span.text-green-400 {
+            color: #15803d !important;
+        }
+      body.light-theme #system-disabled-banner h2 {
+            color: #ffffff !important;
+        }
+      input[type=range] {
+            --progress: 0%;
+            background: linear-gradient(to left, #22c55e var(--progress), #1f2533 var(--progress)) !important;
+        }
+      body.light-theme input[type=range] {
+            background: linear-gradient(to left, #22c55e var(--progress), #cbd5e1 var(--progress)) !important;
+        }
+
+        #toast.fade-in {
+            animation: toastCenterFade 0.25s ease-out forwards !important;
+        }
+        #admin-auth-modal button i {
+            color: #94a3b8 !important;
+        }
+        #admin-auth-modal button:hover i {
+            color: #10b981 !important;
+        }
+        body.light-theme #admin-auth-modal button i {
+            color: #475569 !important;
+        }
+        body.light-theme #admin-auth-modal button:hover i {
+            color: #15803d !important;
+        }
+        @keyframes toastCenterFade {
+            from { opacity: 0; transform: translate(-50%, -45%) scale(0.95); }
+            to { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+        }
+        #admin-panel-modal *::-webkit-scrollbar {
+            width: 0px;
+            height: 0px;
+        }
+        body.light-theme #admin-users-ul {
+            background-color: #f8fafc !important;
+            color: #0f172a !important;
+        }
+        body.light-theme #admin-users-ul li {
+            background-color: #ffffff !important;
+            border-color: #e2e8f0 !important;
+        }
+        body.light-theme #admin-users-ul li:hover {
+            background-color: #f1f5f9 !important;
+        }
+        body.light-theme #admin-users-ul li span {
+            color: #0f172a !important;
+            font-weight: 600;
+        }
+        body.light-theme #admin-panel-modal .bg-cardBg\/50 {
+            background-color: #f8fafc !important;
+            border-color: #cbd5e1 !important;
+        }
+        body.light-theme #system-toggle-btn,
+        body.light-theme #system-toggle-btn *,
+        body.light-theme #admin-panel-modal button[onclick="exportToExcelWithFilter()"],
+        body.light-theme #admin-panel-modal button[onclick="exportToExcelWithFilter()"] * {
+            color: #ffffff !important;
+        }
     </style>
 </head>
 <body class="min-h-screen flex flex-col justify-between items-center p-4 selection:bg-green-500 selection:text-white">
 
-    <!-- Header Bar -->
     <header class="w-full max-w-4xl flex justify-between items-center py-3 px-4 mb-2 border-b border-gray-700/50">
         <div class="flex items-center space-x-3 space-x-reverse">
             <div class="w-9 h-9 rounded-lg bg-green-500/10 border border-green-500/30 flex items-center justify-center text-green-400 font-bold">
@@ -124,30 +228,29 @@
             <span class="font-bold text-lg text-gray-200">نظام حساب الساعات</span>
         </div>
         <div class="flex items-center space-x-2 space-x-reverse">
-            <button onclick="toggleTheme()" class="flex items-center space-x-1.5 space-x-reverse bg-gray-700 hover:bg-gray-600 text-white px-3 py-2 rounded-lg text-sm transition-all duration-200 shadow-md border border-gray-600" title="تغيير المظهر (فاتح/داكن)">
+            <button onclick="toggleTheme()" class="flex items-center space-x-1.5 space-x-reverse bg-white-700 hover:bg-gray-600 text-white px-3 py-2 rounded-lg text-sm transition-all duration-200 shadow-md border border-gray-600" title="تغيير المظهر (فاتح/داكن)">
                 <i id="theme-icon" class="fa-solid fa-moon"></i>
                 <span id="theme-text" class="hidden sm:inline">داكن</span>
             </button>
-            <button id="btn-admin-auth" onclick="openAdminAuthModal()" class="flex items-center space-x-2 space-x-reverse bg-gray-700 hover:bg-gray-600 text-white px-4 py-2 rounded-lg text-sm transition-all duration-200 shadow-md border border-gray-600">
+            <button id="btn-admin-auth" onclick="openAdminAuthModal()" class="flex items-center space-x-2 space-x-reverse bg-white-700 hover:bg-gray-600 text-white px-4 py-2 rounded-lg text-sm transition-all duration-200 shadow-md border border-gray-600">
                 <i class="fa-solid fa-user-gear"></i>
                 <span>إدارة</span>
             </button>
         </div>
     </header>
 
-    <!-- System Disabled Notice Overlay -->
-    <div id="system-disabled-banner" class="hidden w-full max-w-md bg-red-950/80 border border-red-600/80 text-red-200 p-6 rounded-2xl text-center my-auto shadow-2xl fade-in">
-        <div class="w-16 h-16 bg-red-500/20 text-red-400 border border-red-500/40 rounded-full flex items-center justify-center mx-auto mb-4 text-3xl">
+
+    <div id="system-disabled-banner" class="hidden w-full max-w-md bg-red-950/70 border border-red-600/5 text-red-200 p-6 rounded-2xl text-center my-auto shadow-2xl fade-in">
+        <div class="w-16 h-16 bg-red-500/10 text-red-400 border border-red-500/30 rounded-full flex items-center justify-center mx-auto mb-4 text-3xl">
             <i class="fa-solid fa-power-off"></i>
         </div>
         <h2 class="text-xl font-bold text-white mb-2">النظام متوقف حالياً</h2>
-        <p class="text-sm text-gray-300">تم إيقاف استقبال الساعات مؤقتاً من قبل الإدارة</p>
+        <p class="text-sm text-white-300">تم إيقاف استقبال الساعات مؤقتاً من قبل الإدارة</p>
     </div>
 
-    <!-- Main Content Container -->
     <main id="main-container" class="w-full max-w-4xl flex-grow flex items-center justify-center py-6">
 
-        <!-- STEP 1: Login Screen -->
+
         <div id="login-section" class="w-full max-w-md bg-cardBg rounded-2xl p-8 shadow-2xl border border-gray-700/60 fade-in text-center my-auto">
             <h1 class="text-2xl font-bold text-white mb-2">ساعات المنزل</h1>
             <p class="text-sm text-gray-400 mb-8">مؤسسة المصطفى للإرشاد والتوعية الدينية</p>
@@ -177,12 +280,11 @@
                 </button>
             </form>
 
-            <div id="login-error" class="hidden mt-4 text-red-400 text-sm font-semibold bg-red-950/40 border border-red-800/50 p-2.5 rounded-lg">
+            <div id="login-error" class="hidden mt-4 text-red-400 text-sm font-semibold bg-red-950/10 border border-red-800/50 p-2.5 rounded-lg">
                 <i class="fa-solid fa-triangle-exclamation ml-1"></i> كلمة المرور غير صحيحة
             </div>
         </div>
 
-        <!-- STEP 2: Main Working Dashboard -->
         <div id="dashboard-section" class="hidden w-full max-w-2xl bg-cardBg rounded-2xl p-6 sm:p-8 shadow-2xl border border-gray-700/60 fade-in">
             <div class="flex justify-between items-center mb-6 border-b border-gray-700/60 pb-4">
                 <div>
@@ -192,7 +294,7 @@
             </div>
 
             <form id="hours-form" onsubmit="event.preventDefault(); triggerConfirmation();" class="space-y-6">
-                <!-- 1. Employee Name -->
+
                 <div class="relative">
                     <label class="block text-sm font-semibold text-gray-300 mb-2">اسمك الثلاثي مع اللقب</label>
                     <div class="relative">
@@ -219,10 +321,10 @@
                 </div>
 
                 <!-- 2. Regular Hours Input -->
-                <div class="bg-inputBg/50 p-4 rounded-xl border border-gray-700/80">
+                <div class="bg-inputBg p-4 rounded-xl border border-gray-700">
                     <div class="flex justify-between items-center mb-2">
-                        <label class="text-sm font-semibold text-gray-300">الساعات العادية:</label>
-                        <span class="text-xs text-gray-400">(0 إلى 300 ساعة)</span>
+                        <label class="text-sm font-semibold text-gray-300">الساعات العادية</label>
+                        <span class="text-xs text-gray-400"></span>
                     </div>
                     
                     <div class="grid grid-cols-1 md:grid-cols-12 gap-3 items-center">
@@ -245,16 +347,16 @@
                                 oninput="handleManualInput('reg', this.value)"
                                 class="w-full bg-inputBg text-center text-green-400 font-bold text-lg py-2 rounded-lg border border-gray-600 focus:outline-none focus:border-green-500"
                             />
-                            <span class="absolute left-3 top-2.5 text-xs text-gray-500">ساعة</span>
+                            <span class="absolute left-3 top-2.5 text-xs text-gray-500"></span>
                         </div>
                     </div>
                 </div>
 
                 <!-- 3. Friday Hours Input -->
-                <div class="bg-inputBg/50 p-4 rounded-xl border border-gray-700/80">
+                <div class="bg-inputBg p-4 rounded-xl border border-gray-700">
                     <div class="flex justify-between items-center mb-2">
-                        <label class="text-sm font-semibold text-gray-300">ساعات الجمعة:</label>
-                        <span class="text-xs text-gray-400">(0 إلى 300 ساعة)</span>
+                        <label class="text-sm font-semibold text-gray-300">ساعات الجمعة</label>
+                        <span class="text-xs text-gray-400"></span>
                     </div>
                     
                     <div class="grid grid-cols-1 md:grid-cols-12 gap-3 items-center">
@@ -277,15 +379,15 @@
                                 oninput="handleManualInput('fri', this.value)"
                                 class="w-full bg-inputBg text-center text-green-400 font-bold text-lg py-2 rounded-lg border border-gray-600 focus:outline-none focus:border-green-500"
                             />
-                            <span class="absolute left-3 top-2.5 text-xs text-gray-500">ساعة</span>
+                            <span class="absolute left-3 top-2.5 text-xs text-gray-500"></span>
                         </div>
                     </div>
                 </div>
 
                 <!-- Live Total Preview -->
                 <div class="flex justify-between items-center bg-green-950/30 border border-green-500/20 p-3.5 rounded-xl">
-                    <span class="text-sm font-bold text-gray-300">المجموع الكلي للساعات:</span>
-                    <span id="live-total-display" class="text-xl font-extrabold text-green-400">0 ساعة</span>
+                    <span class="text-base font-bold text-black-300">المجموع الكلي للساعات</span>
+                    <span id="live-total-display" class="text-xl font-extrabold text-black-400">0 ساعة</span>
                 </div>
 
                 <!-- Action Button -->
@@ -361,7 +463,7 @@
                     <button type="submit" class="flex-1 bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-2.5 rounded-xl transition text-sm">
                         دخول
                     </button>
-                    <button type="button" onclick="closeAdminAuthModal()" class="flex-1 bg-gray-700 hover:bg-gray-600 text-gray-300 font-bold py-2.5 rounded-xl transition text-sm">
+                    <button type="button" onclick="closeAdminAuthModal()" class="flex-1 bg-gray-700 hover:bg-gray-600 text-white-300 font-bold py-2.5 rounded-xl transition text-sm">
                         إلغاء
                     </button>
                 </div>
@@ -384,37 +486,37 @@
 
             <div class="overflow-y-auto flex-grow space-y-6 pl-1 pr-1">
                 <!-- 1. System On/Off Toggle -->
-                <div class="bg-inputBg/60 p-4 rounded-xl border border-gray-700 flex justify-between items-center">
+                <div class="bg-inputBg p-4 rounded-xl border border-gray-700 flex justify-between items-center">
                     <div>
                         <h4 class="font-bold text-white text-base">حالة النظام</h4>
                         <p class="text-xs text-gray-400">تشغيل أو إيقاف النظام يدوياً</p>
                     </div>
                     <div class="flex items-center gap-3">
-                        <span id="system-status-label" class="font-bold text-sm text-green-400">النظام مفعل حالياً ✅</span>
+                        <span id="system-status-label" class="font-bold text-sm text-green-400">النظام مفعل حالياً</span>
                         <button id="system-toggle-btn" onclick="toggleSystemState()" class="bg-red-700 hover:bg-red-600 text-white px-4 py-2 rounded-xl text-sm font-bold transition flex items-center gap-2">
                             <i class="fa-solid fa-power-off"></i>
-                            <span id="system-btn-text">إيقاف النظام</span>
+                            <span id="system-btn-text">النظام</span>
                         </button>
                     </div>
                 </div>
 
                 <!-- 2. Export Excel -->
-                <div class="bg-inputBg/60 p-4 rounded-xl border border-gray-700 space-y-4">
+                <div class="bg-inputBg p-4 rounded-xl border border-gray-700 space-y-4">
                     <div class="flex justify-between items-center">
                         <div>
                             <h4 class="font-bold text-white text-base">تصدير السجلات إلى Excel</h4>
-                            <p class="text-xs text-gray-400">اختر السنة والشهر المطلوب لتصدير السجلات بدقة</p>
+                            <p class="text-xs text-gray-400">اختر السنة والشهر لتصدير السجلات بدقة</p>
                         </div>
                     </div>
 
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
                         <div>
-                            <label class="block text-xs font-semibold text-gray-300 mb-1.5">اختر السنة:</label>
+                            <label class="block text-xs font-bold text-gray-300 mb-1.5">السنة</label>
                             <select id="export-year-select" onchange="updateMonthFilterOptions()" class="w-full bg-cardBg text-white text-sm px-3 py-2.5 rounded-xl border border-gray-600 focus:outline-none focus:border-emerald-500">
                             </select>
                         </div>
                         <div>
-                            <label class="block text-xs font-semibold text-gray-300 mb-1.5">اختر الشهر:</label>
+                            <label class="block text-xs font-bold text-gray-300 mb-1.5">الشهر</label>
                             <select id="export-month-select" class="w-full bg-cardBg text-white text-sm px-3 py-2.5 rounded-xl border border-gray-600 focus:outline-none focus:border-emerald-500">
                             </select>
                         </div>
@@ -427,7 +529,7 @@
                 </div>
 
                 <!-- 3. User Management -->
-                <div class="bg-inputBg/60 p-4 rounded-xl border border-gray-700 space-y-4">
+                <div class="bg-inputBg p-4 rounded-xl border border-gray-700 space-y-4">
                     <h4 class="font-bold text-white text-base border-b border-gray-700 pb-2">إدارة المستخدمين</h4>
 
                     <div class="flex gap-2">
@@ -443,13 +545,13 @@
                     </div>
 
                     <div class="flex justify-between items-center pt-2">
-                        <span class="text-xs font-bold text-gray-300">قائمة المستخدمين (<span id="user-count">0</span>):</span>
+                        <span class="text-s font-bold text-orange-300">قائمة المستخدمين (<span id="user-count">0</span>)</span>
                         <div class="relative w-1/2">
                             <input 
                                 type="text" 
                                 id="search-user-input" 
                                 oninput="filterUsersList(this.value)" 
-                                placeholder="بحث في القائمة..." 
+                                placeholder="بحث..." 
                                 class="w-full bg-cardBg text-white text-xs px-3 py-1.5 pr-8 rounded-lg border border-gray-600 focus:outline-none focus:border-green-500"
                             />
                             <i class="fa-solid fa-magnifying-glass absolute right-2.5 top-2 text-xs text-gray-400"></i>
@@ -466,9 +568,9 @@
     </div>
 
     <!-- Toast Notification -->
-    <div id="toast" class="hidden fixed bottom-5 left-5 bg-emerald-600 text-white px-4 py-3 rounded-xl shadow-xl flex items-center space-x-2 space-x-reverse z-50 fade-in">
-        <i class="fa-solid fa-circle-check"></i>
-        <span id="toast-msg">تمت العملية بنجاح</span>
+    <div id="toast" class="hidden fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-emerald-600 text-white px-6 py-4 rounded-2xl shadow-2xl flex items-center justify-center space-x-2 space-x-reverse z-50 text-center">
+        <i class="fa-solid fa-circle-check text-xl"></i>
+        <span id="toast-msg" class="font-bold text-base">تمت العملية بنجاح</span>
     </div>
 
     <!-- JavaScript Application Logic with Supabase -->
@@ -487,7 +589,7 @@
         const SUPABASE_KEY = "sb_publishable_X1uy0iiniAw7nFhqZgDFWg_eyPRq76h";
         const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
-        const LOGIN_CODE = "Mb114";
+        const LOGIN_CODE = "132.003.11.4";
         const ADMIN_CODE = "Kh1974";
 
         const DEFAULT_USERS = ["السيد اسماعيل مالك الحسيني", "السيد ثامر حافظ الموسوي", "السيد حسن اسماعيل الموسوي", "السيد حسين ابراهيم الموسوي", "السيد سجاد ستار الموسوي", "السيد علي قاسم الموسوي", "السيد كامل رحيم الحسيني", "السيد محمود علي البعاج", "السيد مرتضى محسن الغرابي", "الشيخ احمد حسن عبود العبودي", "الشيخ احمد حسين الفؤادي", "الشيخ احمد حسين الهلالي", "الشيخ احمد عبد الملك الماجدي", "الشيخ احمد كاظم الكناني", "الشيخ اسعد مري صالح الشويلي", "الشيخ ايوب موحي حامدي الازيرجاوي", "الشيخ جاسم علي السويدي", "الشيخ جاسم محسن الوحيلي", "الشيخ جهاد علي الحلفي", "الشيخ حازم محمد الترابي", "الشيخ حامد محسن السراي", "الشيخ حسن بردان البيادلي", "الشيخ حسن صلاح الصالحي", "الشيخ حسون كريم الشويلي", "الشيخ حسين كامل السعيدي", "الشيخ حيدر عبد الحسين شهيد الظالمي", "الشيخ حيدر عبد الحسين نعيم المالكي", "الشيخ حيدر منير الذهيباوي", "الشيخ خالد عزيز الخفاجي", "الشيخ خالد منصور كوين الركابي", "الشيخ خلف فالح ناهي الشويلي", "الشيخ دايم عبد النبي شنشول", "الشيخ رحيم عوده الحسناوي", "الشيخ رشيد تين البديري", "الشيخ سعد هاشم الكرعاوي", "الشيخ شهيد عبد الامير البغدادي", "الشيخ صادق جياد العبادي", "الشيخ ضياء ماجد المازني", "الشيخ عادل إسماعيل كامل السعيدي", "الشيخ عبد العظيم علي الأيرواني", "الشيخ عصام لفته التميمي", "الشيخ عطية محمد الزركوشي", "الشيخ عقيل عطية الحجامي", "الشيخ علي اسعد الشويلي", "الشيخ علي الموصلي", "الشيخ علي عبد الساده الكعبي", "الشيخ علي يوسف الربيعي", "الشيخ عماد فالح الخفاجي", "الشيخ عماد كاظم الدراجي", "الشيخ عمار حسن الجبوري", "الشيخ قاسم برهان الطليباوي", "الشيخ كرار رحمن عبد حسين الحلي", "الشيخ كرار عبد الزهره العبادي", "الشيخ عبد الحسين الراشد", "الشيخ محمد حسين أسعد الشويلي", "الشيخ محمد عبد الزهره العابدي", "الشيخ محمد عبد العظيم ال فرج الله", "الشيخ محمد علي التميمي", "الشيخ محمد فارس القطراني", "الشيخ محمد قيس الكعبي", "الشيخ مسلم ناصر المنصوري", "الشيخ مصطفى حسن الحميداوي", "الشيخ مصطفى محمد العزاوي", "الشيخ مهدي حسن حران الجبوري", "الشيخ مهند عبد الهادي ناجي الوائلي", "الشيخ ميرزا كرار العابدي", "الشيخ نبيل سلمان البزوني", "الشيخ ورد زين العابدين الحلبي السوري", "الشيخ وسام فالح الناصري", "الشيخ يوسف غانم عداي البدري"];
@@ -645,7 +747,7 @@
                     statusLabel.textContent = "النظام مفعل حالياً";
                     statusLabel.className = "font-bold text-sm text-green-400";
                 }
-                if (btnText) btnText.textContent = "إيقاف النظام";
+                if (btnText) btnText.textContent = "إيقاف";
                 if (toggleBtn) toggleBtn.className = "bg-red-700 hover:bg-red-600 text-white px-4 py-2 rounded-xl text-sm font-bold transition flex items-center gap-2";
             } else {
                 mainContainer.classList.add('hidden');
@@ -660,7 +762,7 @@
                     statusLabel.textContent = "النظام مغلق حالياً";
                     statusLabel.className = "font-bold text-sm text-red-400";
                 }
-                if (btnText) btnText.textContent = "تشغيل النظام";
+                if (btnText) btnText.textContent = "تشغيل";
                 if (toggleBtn) toggleBtn.className = "bg-emerald-600 hover:bg-emerald-500 text-white px-4 py-2 rounded-xl text-sm font-bold transition flex items-center gap-2";
             }
         }
@@ -669,7 +771,9 @@
             isSystemActive = !isSystemActive;
             await syncStateToSupabase();
             applySystemStateUI();
-            showToast(isSystemActive ? "تم تشغيل النظام" : "تم إيقاف النظام");
+            if (isSystemActive) {
+                showToast("تم تشغيل النظام");
+            }
         }
 
         function renderAdminUsersList(filterText = '') {
@@ -706,7 +810,7 @@
             const input = document.getElementById('new-user-name');
             const name = input.value.trim();
             if (!name) {
-                showToast("يرجى إدخال اسم المستخدم!", true);
+                showToast("يرجى إدخال اسم المستخدم", true);
                 return;
             }
             if (approvedUsers.includes(name)) {
@@ -799,6 +903,15 @@
             }
         }
 
+function updateSliderProgress(type, value) {
+            const slider = document.getElementById(`${type}-hours-slider`);
+            const min = parseFloat(slider.min) || 0;
+            const max = parseFloat(slider.max) || 300;
+            const num = Math.max(min, Math.min(max, parseFloat(value) || 0));
+            const percent = ((num - min) / (max - min)) * 100;
+            slider.style.setProperty('--progress', `${percent}%`);
+        }
+
         function syncHours(type, source) {
             const slider = document.getElementById(`${type}-hours-slider`);
             const input = document.getElementById(`${type}-hours-input`);
@@ -811,6 +924,7 @@
                 slider.value = val;
                 input.value = val;
             }
+            updateSliderProgress(type, slider.value);
             updateLiveTotal();
         }
 
@@ -823,6 +937,7 @@
             if (cleaned === '') {
                 input.value = '0';
                 slider.value = '0';
+                updateSliderProgress(type, 0);
                 updateLiveTotal();
                 return;
             }
@@ -833,6 +948,7 @@
 
             input.value = num;
             slider.value = num;
+            updateSliderProgress(type, num);
             updateLiveTotal();
         }
 
@@ -868,7 +984,6 @@
             document.getElementById('modal-reg-hours').textContent = reg + ' ساعة';
             document.getElementById('modal-fri-hours').textContent = fri + ' ساعة';
             document.getElementById('modal-total-hours').textContent = total + ' ساعة';
-
             document.getElementById('confirm-modal').classList.remove('hidden');
         }
 
@@ -909,6 +1024,8 @@
             document.getElementById('reg-hours-input').value = 0;
             document.getElementById('fri-hours-slider').value = 0;
             document.getElementById('fri-hours-input').value = 0;
+            updateSliderProgress('reg', 0);
+            updateSliderProgress('fri', 0);
             updateLiveTotal();
 
             showToast("تم حفظ البيانات بنجاح");
@@ -1054,11 +1171,14 @@
             showToast("تم تنزيل ملف Excel بنجاح");
         }
 
-        function showToast(msg, isError = false) {
+function showToast(msg, isError = false) {
             const toast = document.getElementById('toast');
             const toastMsg = document.getElementById('toast-msg');
 
             toastMsg.textContent = msg;
+            toast.style.setProperty('color', '#ffffff', 'important');
+            toastMsg.style.setProperty('color', '#ffffff', 'important');
+
             if (isError) {
                 toast.classList.remove('bg-emerald-600');
                 toast.classList.add('bg-red-600');
