@@ -134,26 +134,12 @@
         }
         input[type=range]::-webkit-slider-thumb:hover {
             transform: scale(1.15);
-  
-        }
-        /* تخصيص أيقونة وإطار الشعار في الوضع النهاري للأخضر الداكن */
-        body.light-theme header .w-9.h-9 {
-            background-color: rgba(22, 163, 74, 0.15) !important;
-            border-color: rgba(22, 163, 74, 0.4) !important;
-        }
-        body.light-theme header .w-9.h-9 i {
-            color: #15803d !important; 
         }
 
         /* تنسيق زر الشعار المدمج في الهيدر */
         #app-logo-btn.can-install {
             cursor: pointer !important;
             pointer-events: auto !important;
-        }
-        #app-logo-btn.is-pwa-app {
-            cursor: default !important;
-            pointer-events: none !important;
-            box-shadow: none !important;
         }
         body.light-theme #app-logo-btn {
             background-color: #ffffff !important;
@@ -241,6 +227,19 @@
 
     <header class="w-full max-w-4xl flex justify-between items-center py-3 px-4 mb-2 border-b border-gray-700/50">
         <div class="flex items-center space-x-3 space-x-reverse">
+            <!-- أيقونة الشعار في وضع التطبيق PWA (بدون زر أو كتابة) -->
+            <div
+                id="pwa-brand-icon"
+                class="hidden w-9 h-9 rounded-lg bg-gradient-to-b from-[#7cb342] to-[#4b6b32] flex items-center justify-center shrink-0 shadow-md select-none">
+                <svg viewBox="0 0 100 100" class="w-6 h-6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M50 18L16 45V82H41V57H59V82H84V45L50 18Z" fill="#ffffff"/>
+                    <path d="M74 23H65V31L74 38V23Z" fill="#ffffff"/>
+                    <circle cx="50" cy="46" r="15" fill="#ffffff"/>
+                    <path d="M50 36V46H59" stroke="#558b2f" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </div>
+
+            <!-- زر تحميل التطبيق في وضع المتصفح -->
             <button
                 type="button"
                 id="app-logo-btn"
@@ -257,6 +256,7 @@
                 </span>
                 <span id="install-logo-label" class="hidden sm:inline font-semibold">تحميل التطبيق</span>
             </button>
+
             <span class="font-bold text-lg text-gray-200">نظام حساب الساعات</span>
         </div>
         <div class="flex items-center space-x-2 space-x-reverse">
@@ -615,27 +615,18 @@
 
         function updateLogoInstallState() {
             const logoBtn = document.getElementById('app-logo-btn');
-            const logoLabel = document.getElementById('install-logo-label');
-            if (!logoBtn) return;
+            const pwaIcon = document.getElementById('pwa-brand-icon');
+            if (!logoBtn || !pwaIcon) return;
 
             if (isRunningAsInstalledApp()) {
                 deferredInstallPrompt = null;
-                logoBtn.classList.remove('can-install');
-                logoBtn.classList.add('is-pwa-app');
-                logoBtn.setAttribute('aria-disabled', 'true');
-                logoBtn.setAttribute('tabindex', '-1');
-                logoBtn.removeAttribute('title');
-                if (logoLabel) logoLabel.classList.add('hidden');
+                logoBtn.classList.add('hidden');
+                pwaIcon.classList.remove('hidden');
             } else {
-                logoBtn.classList.remove('is-pwa-app');
+                pwaIcon.classList.add('hidden');
+                logoBtn.classList.remove('hidden');
                 logoBtn.classList.add('can-install');
-                logoBtn.removeAttribute('aria-disabled');
-                logoBtn.setAttribute('tabindex', '0');
                 logoBtn.setAttribute('title', 'تحميل التطبيق');
-                if (logoLabel) {
-                    logoLabel.classList.remove('hidden');
-                    logoLabel.classList.add('hidden', 'sm:inline');
-                }
             }
         }
 
