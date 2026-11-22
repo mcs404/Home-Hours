@@ -230,12 +230,20 @@
             <!-- أيقونة الشعار في وضع التطبيق PWA (بدون زر أو كتابة) -->
             <div
                 id="pwa-brand-icon"
-                class="hidden w-9 h-9 rounded-lg bg-gradient-to-b from-[#7cb342] to-[#4b6b32] flex items-center justify-center shrink-0 shadow-md select-none">
-                <svg viewBox="0 0 100 100" class="w-6 h-6" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M50 18L16 45V82H41V57H59V82H84V45L50 18Z" fill="#ffffff"/>
-                    <path d="M74 23H65V31L74 38V23Z" fill="#ffffff"/>
-                    <circle cx="50" cy="46" r="15" fill="#ffffff"/>
-                    <path d="M50 36V46H59" stroke="#558b2f" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round"/>
+                class="hidden w-9 h-9 rounded-lg overflow-hidden flex items-center justify-center shrink-0 shadow-md select-none">
+                <svg viewBox="0 0 100 100" class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="homeClockGradPwa" x1="0%" y1="0%" x2="0%" y2="100%">
+                            <stop offset="0%" stop-color="#7cb342"/>
+                            <stop offset="100%" stop-color="#4e6e32"/>
+                        </linearGradient>
+                    </defs>
+                    <rect width="100" height="100" fill="url(#homeClockGradPwa)"/>
+                    <path d="M67 22H76V41L67 34V22Z" fill="#ffffff" stroke="#ffffff" stroke-width="3" stroke-linejoin="round"/>
+                    <path fill-rule="evenodd" clip-rule="evenodd" fill="#ffffff" stroke="#ffffff" stroke-width="3" stroke-linejoin="round"
+                        d="M50 19L17 45V78C17 80.2 18.8 82 21 82H41V60C41 57.8 42.8 56 45 56H55C57.2 56 59 57.8 59 60V82H79C81.2 82 83 80.2 83 78V45L50 19ZM50 32C42.3 32 36 38.3 36 46C36 53.7 42.3 60 50 60C57.7 60 64 53.7 64 46C64 38.3 57.7 32 50 32Z"/>
+                    <path d="M50 35.5V46H59.5" stroke="url(#homeClockGradPwa)" stroke-width="5.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                    <circle cx="50" cy="46" r="3" fill="url(#homeClockGradPwa)"/>
                 </svg>
             </div>
 
