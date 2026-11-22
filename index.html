@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>نظام حساب الساعات</title>
-    
+
     <!-- PWA Meta Tags -->
     <meta name="theme-color" content="#1e2430">
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -53,10 +53,14 @@
 
         input[type=range] {
             -webkit-appearance: none;
-            background: #475569;
+            appearance: none;
             border-radius: 8px;
             height: 10px;
+            outline: none;
+            --progress: 0%;
+            background: linear-gradient(to left, #22c55e var(--progress), #1f2533 var(--progress)) !important;
         }
+
         input[type=range]::-webkit-slider-thumb {
             -webkit-appearance: none;
             height: 22px;
@@ -67,6 +71,7 @@
             box-shadow: 0 0 10px rgba(34, 197, 94, 0.5);
             transition: transform 0.1s ease;
         }
+
         input[type=range]::-webkit-slider-thumb:hover {
             transform: scale(1.15);
         }
@@ -74,78 +79,66 @@
         .fade-in {
             animation: fadeIn 0.3s ease-out forwards;
         }
+
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
-    
+
         body.light-theme {
             background-color: #f1f5f9 !important;
             color: #0f172a !important;
         }
+
         body.light-theme .bg-cardBg {
             background-color: #ffffff !important;
             border-color: #cbd5e1 !important;
             color: #0f172a !important;
         }
+
         body.light-theme .bg-inputBg {
             background-color: #f8fafc !important;
             color: #0f172a !important;
             border-color: #cbd5e1 !important;
         }
+
         body.light-theme .text-white {
             color: #0f172a !important;
         }
+
         body.light-theme .text-gray-200,
         body.light-theme .text-gray-300,
         body.light-theme .text-gray-400 {
             color: #475569 !important;
         }
+
         body.light-theme header {
             border-color: #cbd5e1 !important;
         }
-        body.light-theme select, 
+
+        body.light-theme select,
         body.light-theme input[type="text"],
         body.light-theme input[type="password"] {
             background-color: #f8fafc !important;
             color: #0f172a !important;
             border-color: #cbd5e1 !important;
         }
-        input[type=range] {
-            -webkit-appearance: none;
-            appearance: none;
-            background: #475569;
-            border-radius: 8px;
-            height: 10px;
-            outline: none;
-        }
+
         body.light-theme input[type=range] {
-            background: #cbd5e1; 
-        }
-        input[type=range]::-webkit-slider-thumb {
-            -webkit-appearance: none;
-            height: 22px;
-            width: 22px;
-            border-radius: 50%;
-            background: #22c55e;
-            cursor: pointer;
-            box-shadow: 0 0 10px rgba(34, 197, 94, 0.5);
-            transition: transform 0.1s ease;
-        }
-        input[type=range]::-webkit-slider-thumb:hover {
-            transform: scale(1.15);
+            background: linear-gradient(to left, #22c55e var(--progress), #cbd5e1 var(--progress)) !important;
         }
 
-        /* تنسيق زر الشعار المدمج في الهيدر */
         #app-logo-btn.can-install {
             cursor: pointer !important;
             pointer-events: auto !important;
         }
+
         body.light-theme #app-logo-btn {
             background-color: #ffffff !important;
             color: #0f172a !important;
             border-color: #cbd5e1 !important;
         }
+
         body.light-theme #app-logo-btn:hover {
             background-color: #f8fafc !important;
         }
@@ -159,62 +152,69 @@
         body.light-theme #confirm-modal button.bg-accentGreen {
             color: #ffffff !important;
         }
+
         body.light-theme #confirm-modal .bg-inputBg span.text-green-400 {
             color: #15803d !important;
         }
+
         body.light-theme #system-disabled-banner h2 {
             color: #ffffff !important;
-        }
-        input[type=range] {
-            --progress: 0%;
-            background: linear-gradient(to left, #22c55e var(--progress), #1f2533 var(--progress)) !important;
-        }
-        body.light-theme input[type=range] {
-            background: linear-gradient(to left, #22c55e var(--progress), #cbd5e1 var(--progress)) !important;
         }
 
         #toast.fade-in {
             animation: toastCenterFade 0.25s ease-out forwards !important;
         }
-        #admin-auth-modal button i {
-            color: #94a3b8 !important;
-        }
-        #admin-auth-modal button:hover i {
-            color: #10b981 !important;
-        }
-        body.light-theme #admin-auth-modal button i {
-            color: #475569 !important;
-        }
-        body.light-theme #admin-auth-modal button:hover i {
-            color: #15803d !important;
-        }
+
         @keyframes toastCenterFade {
             from { opacity: 0; transform: translate(-50%, -45%) scale(0.95); }
             to { opacity: 1; transform: translate(-50%, -50%) scale(1); }
         }
+
+        #admin-auth-modal button i {
+            color: #94a3b8 !important;
+        }
+
+        #admin-auth-modal button:hover i {
+            color: #10b981 !important;
+        }
+
+        body.light-theme #admin-auth-modal button i {
+            color: #475569 !important;
+        }
+
+        body.light-theme #admin-auth-modal button:hover i {
+            color: #15803d !important;
+        }
+
         #admin-panel-modal *::-webkit-scrollbar {
             width: 0px;
             height: 0px;
         }
+
         body.light-theme #admin-users-ul {
             background-color: #f8fafc !important;
             color: #0f172a !important;
         }
+
         body.light-theme #admin-users-ul li {
             background-color: #ffffff !important;
             border-color: #e2e8f0 !important;
         }
+
         body.light-theme #admin-users-ul li:hover {
             background-color: #f1f5f9 !important;
         }
+
         body.light-theme #admin-users-ul li span {
             color: #0f172a !important;
             font-weight: 600;
         }
+
         body.light-theme #admin-panel-modal .bg-cardBg\/50 {
             background-color: #f8fafc !important;
             border-color: #cbd5e1 !important;
         }
+
         body.light-theme #system-toggle-btn,
         body.light-theme #system-toggle-btn *,
         body.light-theme #admin-panel-modal button[onclick="exportToExcelWithFilter()"],
@@ -227,39 +227,25 @@
 
     <header class="w-full max-w-4xl flex justify-between items-center py-3 px-4 mb-2 border-b border-gray-700/50">
         <div class="flex items-center space-x-3 space-x-reverse">
-            <!-- أيقونة الشعار في وضع التطبيق PWA (بدون زر أو كتابة) -->
+            <!-- وضع التطبيق المثبت (PWA): اللوغو فقط بدون زر أو نص -->
             <div
                 id="pwa-brand-icon"
                 class="hidden w-9 h-9 rounded-lg overflow-hidden flex items-center justify-center shrink-0 shadow-md select-none">
                 <svg viewBox="0 0 100 100" class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-                    <defs>
-                        <linearGradient id="homeClockGradPwa" x1="0%" y1="0%" x2="0%" y2="100%">
-                            <stop offset="0%" stop-color="#7cb342"/>
-                            <stop offset="100%" stop-color="#4e6e32"/>
-                        </linearGradient>
-                    </defs>
-                    <rect width="100" height="100" fill="url(#homeClockGradPwa)"/>
-                    <path d="M67 22H76V41L67 34V22Z" fill="#ffffff" stroke="#ffffff" stroke-width="3" stroke-linejoin="round"/>
-                    <path fill-rule="evenodd" clip-rule="evenodd" fill="#ffffff" stroke="#ffffff" stroke-width="3" stroke-linejoin="round"
-                        d="M50 19L17 45V78C17 80.2 18.8 82 21 82H41V60C41 57.8 42.8 56 45 56H55C57.2 56 59 57.8 59 60V82H79C81.2 82 83 80.2 83 78V45L50 19ZM50 32C42.3 32 36 38.3 36 46C36 53.7 42.3 60 50 60C57.7 60 64 53.7 64 46C64 38.3 57.7 32 50 32Z"/>
-                    <path d="M50 35.5V46H59.5" stroke="url(#homeClockGradPwa)" stroke-width="5.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-                    <circle cx="50" cy="46" r="3" fill="url(#homeClockGradPwa)"/>
+                    <image href="data:image/jpeg;base64,ضع_كود_BASE64_الخاص_بالصورة_هنا" width="100" height="100" preserveAspectRatio="xMidYMid slice"/>
                 </svg>
             </div>
 
-            <!-- زر تحميل التطبيق في وضع المتصفح -->
+            <!-- وضع المتصفح: زر تحميل التطبيق مع اللوغو -->
             <button
                 type="button"
                 id="app-logo-btn"
                 onclick="handleLogoClick()"
                 class="flex items-center space-x-2 space-x-reverse bg-white-700 hover:bg-gray-600 text-white px-3 py-2 rounded-lg text-sm transition-all duration-200 shadow-md border border-gray-600"
                 title="تحميل التطبيق">
-                <span class="w-5 h-5 rounded bg-gradient-to-b from-[#7cb342] to-[#4b6b32] flex items-center justify-center shrink-0">
-                    <svg viewBox="0 0 100 100" class="w-3.5 h-3.5" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M50 18L16 45V82H41V57H59V82H84V45L50 18Z" fill="#ffffff"/>
-                        <path d="M74 23H65V31L74 38V23Z" fill="#ffffff"/>
-                        <circle cx="50" cy="46" r="15" fill="#ffffff"/>
-                        <path d="M50 36V46H59" stroke="#558b2f" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <span class="w-5 h-5 rounded overflow-hidden flex items-center justify-center shrink-0">
+                    <svg viewBox="0 0 100 100" class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+                        <image href="data:image/jpeg;base64,ضع_كود_BASE64_الخاص_بالصورة_هنا" width="100" height="100" preserveAspectRatio="xMidYMid slice"/>
                     </svg>
                 </span>
                 <span id="install-logo-label" class="hidden sm:inline font-semibold">تحميل التطبيق</span>
@@ -267,6 +253,7 @@
 
             <span class="font-bold text-lg text-gray-200">نظام حساب الساعات</span>
         </div>
+
         <div class="flex items-center space-x-2 space-x-reverse">
             <button onclick="toggleTheme()" class="flex items-center space-x-1.5 space-x-reverse bg-white-700 hover:bg-gray-600 text-white px-3 py-2 rounded-lg text-sm transition-all duration-200 shadow-md border border-gray-600" title="تغيير المظهر (فاتح/داكن)">
                 <i id="theme-icon" class="fa-solid fa-moon"></i>
@@ -279,7 +266,6 @@
         </div>
     </header>
 
-
     <div id="system-disabled-banner" class="hidden w-full max-w-md bg-red-950/70 border border-red-600/5 text-red-200 p-6 rounded-2xl text-center my-auto shadow-2xl fade-in">
         <div class="w-16 h-16 bg-red-500/10 text-red-400 border border-red-500/30 rounded-full flex items-center justify-center mx-auto mb-4 text-3xl">
             <i class="fa-solid fa-power-off"></i>
@@ -289,32 +275,30 @@
     </div>
 
     <main id="main-container" class="w-full max-w-4xl flex-grow flex items-center justify-center py-6">
-
-
         <div id="login-section" class="w-full max-w-md bg-cardBg rounded-2xl p-8 shadow-2xl border border-gray-700/60 fade-in text-center my-auto">
             <h1 class="text-2xl font-bold text-white mb-2">ساعات المنزل</h1>
             <p class="text-sm text-gray-400 mb-8">مؤسسة المصطفى للإرشاد والتوعية الدينية</p>
-            
+
             <form onsubmit="handleLogin(event)" class="space-y-6">
                 <div class="relative flex items-center">
-                    <input 
-                        type="password" 
-                        id="passcode-input" 
-                        placeholder="أدخل كلمة المرور" 
+                    <input
+                        type="password"
+                        id="passcode-input"
+                        placeholder="أدخل كلمة المرور"
                         required
                         class="w-full bg-inputBg text-center text-white placeholder-gray-500 py-3.5 pr-12 pl-12 rounded-xl border border-gray-700 focus:outline-none focus:border-green-500 text-lg transition duration-200"
                     />
-                    <button 
-                        type="button" 
-                        onclick="togglePasswordVisibility('passcode-input', 'toggle-eye-icon')" 
+                    <button
+                        type="button"
+                        onclick="togglePasswordVisibility('passcode-input', 'toggle-eye-icon')"
                         class="absolute left-3 text-gray-400 hover:text-green-400 transition-colors duration-200 p-2 focus:outline-none"
                         title="إظهار/إخفاء كلمة المرور">
                         <i id="toggle-eye-icon" class="fa-solid fa-eye-slash text-xl transition-all duration-300"></i>
                     </button>
                 </div>
-                
-                <button 
-                    type="submit" 
+
+                <button
+                    type="submit"
                     class="w-full bg-accentGreen hover:bg-accentGreenHover text-white font-bold py-3.5 px-4 rounded-xl shadow-lg transition duration-200 text-lg">
                     دخول
                 </button>
@@ -334,24 +318,23 @@
             </div>
 
             <form id="hours-form" onsubmit="event.preventDefault(); triggerConfirmation();" class="space-y-6">
-
                 <div class="relative">
                     <label class="block text-sm font-semibold text-gray-300 mb-2">اسمك الثلاثي مع اللقب</label>
                     <div class="relative">
                         <span class="absolute right-3.5 top-3.5 text-gray-500">
                             <i class="fa-solid fa-user"></i>
                         </span>
-                        <input 
-                            type="text" 
-                            id="emp-name" 
+                        <input
+                            type="text"
+                            id="emp-name"
                             required
                             autocomplete="off"
                             oninput="handleNameInputChange(this.value)"
-                            placeholder="أدخل اسمك" 
+                            placeholder="أدخل اسمك"
                             class="w-full bg-inputBg text-white placeholder-gray-500 pr-10 pl-4 py-3 rounded-xl border border-gray-700 focus:outline-none focus:border-green-500 transition"
                         />
                     </div>
-                    
+
                     <div id="name-suggestions" class="hidden absolute z-30 w-full mt-1 bg-cardBg border border-gray-600 rounded-xl shadow-2xl max-h-48 overflow-y-auto divide-y divide-gray-700/60"></div>
 
                     <div id="name-validation-error" class="hidden mt-2 text-xs text-red-400 font-semibold bg-red-950/40 border border-red-800/50 p-2 rounded-lg flex items-center gap-1.5">
@@ -364,30 +347,28 @@
                 <div class="bg-inputBg p-4 rounded-xl border border-gray-700">
                     <div class="flex justify-between items-center mb-2">
                         <label class="text-sm font-semibold text-gray-300">الساعات العادية</label>
-                        <span class="text-xs text-gray-400"></span>
                     </div>
-                    
+
                     <div class="grid grid-cols-1 md:grid-cols-12 gap-3 items-center">
                         <div class="md:col-span-8 flex items-center space-x-3 space-x-reverse">
-                            <input 
-                                type="range" 
-                                id="reg-hours-slider" 
-                                min="0" 
-                                max="300" 
-                                value="0" 
+                            <input
+                                type="range"
+                                id="reg-hours-slider"
+                                min="0"
+                                max="300"
+                                value="0"
                                 oninput="syncHours('reg', 'slider')"
                                 class="w-full cursor-pointer"
                             />
                         </div>
                         <div class="md:col-span-4 relative">
-                            <input 
-                                type="text" 
-                                id="reg-hours-input" 
-                                value="0" 
+                            <input
+                                type="text"
+                                id="reg-hours-input"
+                                value="0"
                                 oninput="handleManualInput('reg', this.value)"
                                 class="w-full bg-inputBg text-center text-green-400 font-bold text-lg py-2 rounded-lg border border-gray-600 focus:outline-none focus:border-green-500"
                             />
-                            <span class="absolute left-3 top-2.5 text-xs text-gray-500"></span>
                         </div>
                     </div>
                 </div>
@@ -396,30 +377,28 @@
                 <div class="bg-inputBg p-4 rounded-xl border border-gray-700">
                     <div class="flex justify-between items-center mb-2">
                         <label class="text-sm font-semibold text-gray-300">ساعات الجمعة</label>
-                        <span class="text-xs text-gray-400"></span>
                     </div>
-                    
+
                     <div class="grid grid-cols-1 md:grid-cols-12 gap-3 items-center">
                         <div class="md:col-span-8 flex items-center space-x-3 space-x-reverse">
-                            <input 
-                                type="range" 
-                                id="fri-hours-slider" 
-                                min="0" 
-                                max="300" 
-                                value="0" 
+                            <input
+                                type="range"
+                                id="fri-hours-slider"
+                                min="0"
+                                max="300"
+                                value="0"
                                 oninput="syncHours('fri', 'slider')"
                                 class="w-full cursor-pointer"
                             />
                         </div>
                         <div class="md:col-span-4 relative">
-                            <input 
-                                type="text" 
-                                id="fri-hours-input" 
-                                value="0" 
+                            <input
+                                type="text"
+                                id="fri-hours-input"
+                                value="0"
                                 oninput="handleManualInput('fri', this.value)"
                                 class="w-full bg-inputBg text-center text-green-400 font-bold text-lg py-2 rounded-lg border border-gray-600 focus:outline-none focus:border-green-500"
                             />
-                            <span class="absolute left-3 top-2.5 text-xs text-gray-500"></span>
                         </div>
                     </div>
                 </div>
@@ -431,15 +410,14 @@
                 </div>
 
                 <!-- Action Button -->
-                <button 
-                    type="submit" 
+                <button
+                    type="submit"
                     class="w-full bg-accentGreen hover:bg-accentGreenHover text-white font-bold py-3.5 px-4 rounded-xl shadow-lg transition duration-200 text-lg flex items-center justify-center space-x-2 space-x-reverse">
                     <i class="fa-solid fa-check-circle"></i>
                     <span>إتمام العملية</span>
                 </button>
             </form>
         </div>
-
     </main>
 
     <!-- Modal 1: Confirmation Window -->
@@ -450,7 +428,7 @@
             </div>
             <h3 class="text-lg font-bold text-white mb-2">تأكيد إدخال البيانات</h3>
             <p class="text-gray-300 mb-6 text-sm">هل أنت متأكد من المعلومات المدخلة؟</p>
-            
+
             <div class="bg-inputBg p-3 rounded-xl mb-6 text-xs text-right space-y-1.5 border border-gray-700">
                 <div class="flex justify-between"><span class="text-gray-400">الاسم:</span> <span id="modal-emp-name" class="font-bold text-white"></span></div>
                 <div class="flex justify-between"><span class="text-gray-400">الساعات العادية:</span> <span id="modal-reg-hours" class="font-bold text-green-400"></span></div>
@@ -480,21 +458,21 @@
 
             <form onsubmit="handleAdminAuth(event)">
                 <div class="relative flex items-center mb-3">
-                    <input 
-                        type="password" 
-                        id="admin-passcode-input" 
-                        placeholder="أدخل كلمة المرور" 
+                    <input
+                        type="password"
+                        id="admin-passcode-input"
+                        placeholder="أدخل كلمة المرور"
                         required
                         class="w-full bg-inputBg text-center text-white placeholder-gray-500 py-3 pr-10 pl-10 rounded-xl border border-gray-700 focus:outline-none focus:border-emerald-500"
                     />
-                    <button 
-                        type="button" 
-                        onclick="togglePasswordVisibility('admin-passcode-input', 'admin-toggle-eye-icon')" 
+                    <button
+                        type="button"
+                        onclick="togglePasswordVisibility('admin-passcode-input', 'admin-toggle-eye-icon')"
                         class="absolute left-3 text-gray-400 hover:text-emerald-400 transition-colors duration-200 focus:outline-none">
                         <i id="admin-toggle-eye-icon" class="fa-solid fa-eye-slash text-lg transition-all duration-300"></i>
                     </button>
                 </div>
-                
+
                 <div id="admin-auth-error" class="hidden text-xs text-red-400 mb-3 font-semibold">
                     كلمة المرور غير صحيحة
                 </div>
@@ -570,25 +548,25 @@
                     <h4 class="font-bold text-white text-base border-b border-gray-700 pb-2">إدارة المستخدمين</h4>
 
                     <div class="flex gap-2">
-                        <input 
-                            type="text" 
-                            id="new-user-name" 
-                            placeholder="أدخل اسم المستخدم الجديد..." 
+                        <input
+                            type="text"
+                            id="new-user-name"
+                            placeholder="أدخل اسم المستخدم الجديد..."
                             class="flex-grow bg-cardBg text-white text-sm px-3.5 py-2.5 rounded-xl border border-gray-600 focus:outline-none focus:border-green-500"
                         />
                         <button onclick="addNewUser()" class="bg-accentGreen hover:bg-accentGreenHover text-white px-4 py-2.5 rounded-xl text-sm font-bold transition whitespace-nowrap">
-                            <i class="fa-solid fa-plus ml-1"></i> إضافة 
+                            <i class="fa-solid fa-plus ml-1"></i> إضافة
                         </button>
                     </div>
 
                     <div class="flex justify-between items-center pt-2">
                         <span class="text-s font-bold text-orange-300">قائمة المستخدمين (<span id="user-count">0</span>)</span>
                         <div class="relative w-1/3">
-                            <input 
-                                type="text" 
-                                id="search-user-input" 
-                                oninput="filterUsersList(this.value)" 
-                                placeholder="بحث..." 
+                            <input
+                                type="text"
+                                id="search-user-input"
+                                oninput="filterUsersList(this.value)"
+                                placeholder="بحث..."
                                 class="w-full bg-cardBg text-white text-xs px-3 py-1.5 pr-8 rounded-lg border border-gray-600 focus:outline-none focus:border-green-500"
                             />
                             <i class="fa-solid fa-magnifying-glass absolute right-2.5 top-2 text-xs text-gray-400"></i>
@@ -596,8 +574,7 @@
                     </div>
 
                     <div class="max-h-56 overflow-y-auto border border-gray-700 rounded-xl bg-cardBg/50 divide-y divide-gray-800">
-                        <ul id="admin-users-ul" class="text-xs text-gray-200">
-                        </ul>
+                        <ul id="admin-users-ul" class="text-xs text-gray-200"></ul>
                     </div>
                 </div>
             </div>
@@ -612,7 +589,6 @@
 
     <!-- JavaScript Application Logic with Supabase -->
     <script>
-        // PWA Install Prompt & Standalone App Detection
         let deferredInstallPrompt = null;
 
         function isRunningAsInstalledApp() {
@@ -634,14 +610,11 @@
                 pwaIcon.classList.add('hidden');
                 logoBtn.classList.remove('hidden');
                 logoBtn.classList.add('can-install');
-                logoBtn.setAttribute('title', 'تحميل التطبيق');
             }
         }
 
         window.addEventListener('beforeinstallprompt', (e) => {
-            if (isRunningAsInstalledApp()) {
-                return;
-            }
+            if (isRunningAsInstalledApp()) return;
             e.preventDefault();
             deferredInstallPrompt = e;
             updateLogoInstallState();
@@ -653,30 +626,21 @@
             showToast("تم تثبيت التطبيق بنجاح");
         });
 
-        window.matchMedia('(display-mode: standalone)').addEventListener('change', () => {
-            updateLogoInstallState();
-        });
+        window.matchMedia('(display-mode: standalone)').addEventListener('change', updateLogoInstallState);
 
         async function handleLogoClick() {
-            if (isRunningAsInstalledApp() || !deferredInstallPrompt) {
-                return;
-            }
-
+            if (isRunningAsInstalledApp() || !deferredInstallPrompt) return;
             deferredInstallPrompt.prompt();
             await deferredInstallPrompt.userChoice;
             deferredInstallPrompt = null;
         }
 
-        // Register Service Worker for PWA
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
-                navigator.serviceWorker.register('./sw.js')
-                    .then(reg => console.log('Service Worker registered successfully!', reg))
-                    .catch(err => console.log('Service Worker registration failed:', err));
+                navigator.serviceWorker.register('./sw.js').catch(() => {});
             });
         }
 
-        // Supabase Configuration
         const SUPABASE_URL = "https://bufelwgfsxqmsmfmyhef.supabase.co";
         const SUPABASE_KEY = "sb_publishable_X1uy0iiniAw7nFhqZgDFWg_eyPRq76h";
         const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
@@ -689,6 +653,7 @@
         let records = [];
         let approvedUsers = [];
         let isSystemActive = true;
+        let isDarkMode = true;
 
         window.onload = async function() {
             updateLogoInstallState();
@@ -696,10 +661,9 @@
             await fetchAllDataFromSupabase();
             updateLiveTotal();
 
-            // Realtime subscription for instant cross-device sync
             supabaseClient
                 .channel('public:hours_data')
-                .on('postgres_changes', { event: '*', schema: 'public', table: 'hours_data' }, payload => {
+                .on('postgres_changes', { event: '*', schema: 'public', table: 'hours_data' }, () => {
                     fetchAllDataFromSupabase();
                 })
                 .subscribe();
@@ -713,7 +677,6 @@
                     .eq('id', 1);
 
                 if (error) {
-                    console.error('Error fetching from Supabase:', error);
                     loadFromLocalStorage();
                     return;
                 }
@@ -733,7 +696,6 @@
                 renderAdminUsersList();
                 saveToLocalStorage();
             } catch (err) {
-                console.error('Supabase fetch error:', err);
                 loadFromLocalStorage();
             }
         }
@@ -749,18 +711,10 @@
 
                 const { error } = await supabaseClient
                     .from('hours_data')
-                    .upsert([
-                        { id: 1, content: payloadContent }
-                    ], { onConflict: 'id' });
+                    .upsert([{ id: 1, content: payloadContent }], { onConflict: 'id' });
 
-                if (error) {
-                    console.error('Supabase sync error:', error);
-                } else {
-                    saveToLocalStorage();
-                }
-            } catch (e) {
-                console.error('Sync exception:', e);
-            }
+                if (!error) saveToLocalStorage();
+            } catch (e) {}
         }
 
         function saveToLocalStorage() {
@@ -783,30 +737,17 @@
             }
         }
 
-        // Theme Toggle Logic
-        let isDarkMode = true;
-
         function loadTheme() {
             const savedTheme = localStorage.getItem('app_theme_mode');
-            if (savedTheme === 'light') {
-                isDarkMode = false;
-                document.body.classList.add('light-theme');
-            } else {
-                isDarkMode = true;
-                document.body.classList.remove('light-theme');
-            }
+            isDarkMode = savedTheme !== 'light';
+            document.body.classList.toggle('light-theme', !isDarkMode);
             updateThemeButtonUI();
         }
 
         function toggleTheme() {
             isDarkMode = !isDarkMode;
-            if (isDarkMode) {
-                document.body.classList.remove('light-theme');
-                localStorage.setItem('app_theme_mode', 'dark');
-            } else {
-                document.body.classList.add('light-theme');
-                localStorage.setItem('app_theme_mode', 'light');
-            }
+            document.body.classList.toggle('light-theme', !isDarkMode);
+            localStorage.setItem('app_theme_mode', isDarkMode ? 'dark' : 'light');
             updateThemeButtonUI();
         }
 
@@ -815,10 +756,10 @@
             const text = document.getElementById('theme-text');
             if (isDarkMode) {
                 icon.className = "fa-solid fa-moon text-yellow-400";
-                if(text) text.textContent = "داكن";
+                if (text) text.textContent = "داكن";
             } else {
                 icon.className = "fa-solid fa-sun text-amber-500";
-                if(text) text.textContent = "فاتح";
+                if (text) text.textContent = "فاتح";
             }
         }
 
@@ -829,7 +770,6 @@
         function applySystemStateUI() {
             const mainContainer = document.getElementById('main-container');
             const disabledBanner = document.getElementById('system-disabled-banner');
-            const statusLabel = document.getElementById('system-status-label');
             const btnText = document.getElementById('system-btn-text');
             const toggleBtn = document.getElementById('system-toggle-btn');
 
@@ -841,11 +781,8 @@
             } else {
                 mainContainer.classList.add('hidden');
                 disabledBanner.classList.remove('hidden');
-                
-                const confirmModal = document.getElementById('confirm-modal');
-                if (confirmModal) confirmModal.classList.add('hidden');
-                const adminPanelModal = document.getElementById('admin-panel-modal');
-                if (adminPanelModal) adminPanelModal.classList.add('hidden');
+                document.getElementById('confirm-modal')?.classList.add('hidden');
+                document.getElementById('admin-panel-modal')?.classList.add('hidden');
                 if (btnText) btnText.textContent = "تشغيل";
                 if (toggleBtn) toggleBtn.className = "bg-emerald-600 hover:bg-emerald-500 text-white px-4 py-2 rounded-xl text-sm font-bold transition flex items-center gap-2";
             }
@@ -855,9 +792,7 @@
             isSystemActive = !isSystemActive;
             await syncStateToSupabase();
             applySystemStateUI();
-            if (isSystemActive) {
-                showToast("تم تشغيل النظام");
-            }
+            if (isSystemActive) showToast("تم تشغيل النظام");
         }
 
         function renderAdminUsersList(filterText = '') {
@@ -955,22 +890,14 @@
         function togglePasswordVisibility(inputId, iconId) {
             const input = document.getElementById(inputId);
             const icon = document.getElementById(iconId);
-
-            if (input.type === 'password') {
-                input.type = 'text';
-                icon.classList.remove('fa-eye-slash');
-                icon.classList.add('fa-eye');
-            } else {
-                input.type = 'password';
-                icon.classList.remove('fa-eye');
-                icon.classList.add('fa-eye-slash');
-            }
+            const isHidden = input.type === 'password';
+            input.type = isHidden ? 'text' : 'password';
+            icon.classList.toggle('fa-eye-slash', !isHidden);
+            icon.classList.toggle('fa-eye', isHidden);
         }
 
         function convertArabicDigitsToEnglish(str) {
-            return String(str).replace(/[٠-٩]/g, function(d) {
-                return d.charCodeAt(0) - 1632;
-            });
+            return String(str).replace(/[٠-٩]/g, d => d.charCodeAt(0) - 1632);
         }
 
         function handleLogin(e) {
@@ -1003,8 +930,7 @@
             if (source === 'slider') {
                 input.value = slider.value;
             } else {
-                let val = parseInt(slider.value) || 0;
-                val = Math.max(0, Math.min(300, val));
+                const val = Math.max(0, Math.min(300, parseInt(slider.value) || 0));
                 slider.value = val;
                 input.value = val;
             }
@@ -1015,9 +941,8 @@
         function handleManualInput(type, value) {
             const slider = document.getElementById(`${type}-hours-slider`);
             const input = document.getElementById(`${type}-hours-input`);
-            
-            let cleaned = convertArabicDigitsToEnglish(value).replace(/[^0-9]/g, '');
-            
+            const cleaned = convertArabicDigitsToEnglish(value).replace(/[^0-9]/g, '');
+
             if (cleaned === '') {
                 input.value = '0';
                 slider.value = '0';
@@ -1026,10 +951,7 @@
                 return;
             }
 
-            let num = parseInt(cleaned, 10);
-            if (isNaN(num)) num = 0;
-            if (num > 300) num = 300;
-
+            const num = Math.min(300, parseInt(cleaned, 10) || 0);
             input.value = num;
             slider.value = num;
             updateSliderProgress(type, num);
@@ -1050,12 +972,7 @@
             const errDiv = document.getElementById('name-validation-error');
             document.getElementById('name-suggestions').classList.add('hidden');
 
-            if (!name) {
-                showToast("الاسم المدخل غير صحيح، يرجى إعادة المحاولة", true);
-                return;
-            }
-
-            if (!approvedUsers.includes(name)) {
+            if (!name || !approvedUsers.includes(name)) {
                 errDiv.classList.remove('hidden');
                 showToast("الاسم المدخل غير صحيح، يرجى إعادة المحاولة", true);
                 return;
@@ -1087,20 +1004,19 @@
             const day = now.getDate();
             const month = now.getMonth() + 1;
             const year = now.getFullYear();
-            const dateStr = `${day}-${month}-${year} ${String(now.getHours()).padStart(2,'0')}:${String(now.getMinutes()).padStart(2,'0')}`;
+            const dateStr = `${day}-${month}-${year} ${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
 
-            const newRecord = {
+            records.unshift({
                 date: dateStr,
                 timestamp: now.getTime(),
-                year: year,
-                month: month,
-                name: name,
+                year,
+                month,
+                name,
                 regularHours: reg,
                 fridayHours: fri,
                 totalHours: total
-            };
+            });
 
-            records.unshift(newRecord);
             await syncStateToSupabase();
 
             document.getElementById('emp-name').value = '';
@@ -1147,16 +1063,10 @@
 
         function populateExportFilters() {
             const yearSelect = document.getElementById('export-year-select');
-            const monthSelect = document.getElementById('export-month-select');
-
             const currentYearVal = yearSelect.value;
-            const currentMonthVal = monthSelect.value;
-
             const years = [...new Set(records.map(r => r.year))].sort((a, b) => a - b);
-            
-            if (years.length === 0) {
-                years.push(new Date().getFullYear());
-            }
+
+            if (years.length === 0) years.push(new Date().getFullYear());
 
             yearSelect.innerHTML = '<option value="all">كل السنوات (عام)</option>';
             years.forEach(y => {
@@ -1179,12 +1089,11 @@
             const selectedYear = yearSelect.value;
             const currentMonthVal = monthSelect.value;
 
-            let availableMonths = [];
-            if (selectedYear === 'all') {
-                availableMonths = [...new Set(records.map(r => r.month))].sort((a, b) => a - b);
-            } else {
-                availableMonths = [...new Set(records.filter(r => String(r.year) === selectedYear).map(r => r.month))].sort((a, b) => a - b);
-            }
+            const availableMonths = [...new Set(
+                records
+                    .filter(r => selectedYear === 'all' || String(r.year) === selectedYear)
+                    .map(r => r.month)
+            )].sort((a, b) => a - b);
 
             monthSelect.innerHTML = '<option value="all">كل الأشهر (عام)</option>';
             availableMonths.forEach(m => {
@@ -1194,11 +1103,9 @@
                 monthSelect.appendChild(opt);
             });
 
-            if ([...monthSelect.options].some(o => o.value === currentMonthVal)) {
-                monthSelect.value = currentMonthVal;
-            } else {
-                monthSelect.value = 'all';
-            }
+            monthSelect.value = [...monthSelect.options].some(o => o.value === currentMonthVal)
+                ? currentMonthVal
+                : 'all';
         }
 
         function closeAdminPanel() {
@@ -1234,7 +1141,7 @@
             }));
 
             const worksheet = XLSX.utils.json_to_sheet(excelData);
-            if(!worksheet['!views']) worksheet['!views'] = [];
+            if (!worksheet['!views']) worksheet['!views'] = [];
             worksheet['!views'].push({ RTL: true });
 
             const workbook = XLSX.utils.book_new();
@@ -1243,14 +1150,12 @@
             let fileNameSuffix = "الكل";
             if (selectedYear !== 'all') {
                 fileNameSuffix = `سنة_${selectedYear}`;
-                if (selectedMonth !== 'all') {
-                    fileNameSuffix += `_شهر_${selectedMonth}`;
-                }
+                if (selectedMonth !== 'all') fileNameSuffix += `_شهر_${selectedMonth}`;
             } else if (selectedMonth !== 'all') {
                 fileNameSuffix = `شهر_${selectedMonth}`;
             }
 
-            const fileName = `ساعات_المنزل_${fileNameSuffix}_${new Date().toISOString().slice(0,10)}.xlsx`;
+            const fileName = `ساعات_المنزل_${fileNameSuffix}_${new Date().toISOString().slice(0, 10)}.xlsx`;
             XLSX.writeFile(workbook, fileName);
             showToast("تم تنزيل ملف Excel بنجاح");
         }
@@ -1263,13 +1168,8 @@
             toast.style.setProperty('color', '#ffffff', 'important');
             toastMsg.style.setProperty('color', '#ffffff', 'important');
 
-            if (isError) {
-                toast.classList.remove('bg-emerald-600');
-                toast.classList.add('bg-red-600');
-            } else {
-                toast.classList.remove('bg-red-600');
-                toast.classList.add('bg-emerald-600');
-            }
+            toast.classList.toggle('bg-red-600', isError);
+            toast.classList.toggle('bg-emerald-600', !isError);
 
             toast.classList.add('fade-in');
             toast.classList.remove('hidden');
