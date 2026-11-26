@@ -297,7 +297,6 @@
 
         /* Polished Glossy Translucent Icons & Squircle Buttons */
         .download-action-btn,
-        #pwa-brand-icon,
         #header-menu-btn {
             background: var(--glass-surface-strong) !important;
             backdrop-filter: var(--glass-blur);
@@ -332,6 +331,12 @@
         .download-action-btn:active,
         #header-menu-btn:active {
             transform: scale(0.94);
+        }
+
+        @media (display-mode: standalone), (display-mode: fullscreen) {
+            #app-logo-btn {
+                display: none !important;
+            }
         }
 
         #app-logo-btn.can-install {
@@ -728,7 +733,7 @@
         }
 
     
-        /* Animated Ambient Background Orbs Visible Through Frosted Glass (GPU-Composited, Zero Repaint) */
+        /* Animated Ambient Background Orbs Visible Through Frosted Glass (Ultra-Smooth, Fast & 100% GPU-Composited) */
         #theme-atmosphere-overlay {
             position: fixed !important;
             inset: -12% !important;
@@ -755,93 +760,82 @@
 
         /* Night Mode: Sky Blue (#38bdf8), Green (#22c55e), Purple (#a855f7) */
         #theme-atmosphere-overlay::before {
-            opacity: 0.85;
+            opacity: 0.88;
             background-image:
-                radial-gradient(circle at 18% 24%, rgba(56, 189, 248, 0.48) 0%, rgba(56, 189, 248, 0) 44%),
-                radial-gradient(circle at 82% 28%, rgba(168, 85, 247, 0.46) 0%, rgba(168, 85, 247, 0) 46%),
-                radial-gradient(circle at 52% 78%, rgba(34, 197, 94, 0.44) 0%, rgba(34, 197, 94, 0) 48%);
-            background-size: 140% 140%;
-            animation: ambientMeshFloatNight 7s ease-in-out infinite alternate;
+                radial-gradient(circle at 20% 25%, rgba(56, 189, 248, 0.50) 0%, rgba(56, 189, 248, 0) 45%),
+                radial-gradient(circle at 80% 28%, rgba(168, 85, 247, 0.48) 0%, rgba(168, 85, 247, 0) 47%),
+                radial-gradient(circle at 50% 78%, rgba(34, 197, 94, 0.46) 0%, rgba(34, 197, 94, 0) 48%);
+            background-size: 130% 130%;
+            animation: ambientOrbitPrimary 4.2s cubic-bezier(0.37, 0, 0.63, 1) infinite;
         }
 
         #theme-atmosphere-overlay::after {
-            opacity: 0.62;
+            opacity: 0.66;
             background-image:
-                radial-gradient(circle at 72% 72%, rgba(56, 189, 248, 0.36) 0%, rgba(56, 189, 248, 0) 42%),
-                radial-gradient(circle at 28% 74%, rgba(168, 85, 247, 0.36) 0%, rgba(168, 85, 247, 0) 44%),
-                radial-gradient(circle at 50% 18%, rgba(34, 197, 94, 0.34) 0%, rgba(34, 197, 94, 0) 42%);
-            background-size: 135% 135%;
-            animation: ambientMeshCounterNight 8.5s ease-in-out infinite alternate-reverse;
+                radial-gradient(circle at 74% 70%, rgba(56, 189, 248, 0.38) 0%, rgba(56, 189, 248, 0) 43%),
+                radial-gradient(circle at 26% 72%, rgba(168, 85, 247, 0.38) 0%, rgba(168, 85, 247, 0) 45%),
+                radial-gradient(circle at 50% 20%, rgba(34, 197, 94, 0.36) 0%, rgba(34, 197, 94, 0) 43%);
+            background-size: 128% 128%;
+            animation: ambientOrbitSecondary 5s cubic-bezier(0.37, 0, 0.63, 1) infinite;
         }
 
         /* Day Mode: Green (#22c55e), Yellow (#facc15), Sky Blue (#38bdf8), Orange (#fb923c) */
         body.light-theme #theme-atmosphere-overlay::before {
-            opacity: 0.78;
+            opacity: 0.80;
             background-image:
-                radial-gradient(circle at 18% 22%, rgba(34, 197, 94, 0.38) 0%, rgba(34, 197, 94, 0) 44%),
-                radial-gradient(circle at 82% 24%, rgba(56, 189, 248, 0.40) 0%, rgba(56, 189, 248, 0) 44%),
-                radial-gradient(circle at 26% 78%, rgba(250, 204, 21, 0.40) 0%, rgba(250, 204, 21, 0) 45%),
-                radial-gradient(circle at 78% 76%, rgba(251, 146, 60, 0.38) 0%, rgba(251, 146, 60, 0) 45%);
-            background-size: 145% 145%;
-            animation: ambientMeshFloatDay 7s ease-in-out infinite alternate;
+                radial-gradient(circle at 20% 22%, rgba(34, 197, 94, 0.40) 0%, rgba(34, 197, 94, 0) 45%),
+                radial-gradient(circle at 80% 24%, rgba(56, 189, 248, 0.42) 0%, rgba(56, 189, 248, 0) 45%),
+                radial-gradient(circle at 26% 78%, rgba(250, 204, 21, 0.42) 0%, rgba(250, 204, 21, 0) 46%),
+                radial-gradient(circle at 78% 76%, rgba(251, 146, 60, 0.40) 0%, rgba(251, 146, 60, 0) 46%);
+            background-size: 135% 135%;
+            animation: ambientOrbitPrimary 4.2s cubic-bezier(0.37, 0, 0.63, 1) infinite;
         }
 
         body.light-theme #theme-atmosphere-overlay::after {
-            opacity: 0.58;
+            opacity: 0.62;
             background-image:
-                radial-gradient(circle at 65% 28%, rgba(250, 204, 21, 0.32) 0%, rgba(250, 204, 21, 0) 42%),
-                radial-gradient(circle at 34% 68%, rgba(251, 146, 60, 0.30) 0%, rgba(251, 146, 60, 0) 42%),
-                radial-gradient(circle at 55% 48%, rgba(34, 197, 94, 0.28) 0%, rgba(34, 197, 94, 0) 44%),
-                radial-gradient(circle at 16% 52%, rgba(56, 189, 248, 0.30) 0%, rgba(56, 189, 248, 0) 42%);
-            background-size: 140% 140%;
-            animation: ambientMeshCounterDay 8.5s ease-in-out infinite alternate-reverse;
+                radial-gradient(circle at 65% 28%, rgba(250, 204, 21, 0.34) 0%, rgba(250, 204, 21, 0) 43%),
+                radial-gradient(circle at 34% 68%, rgba(251, 146, 60, 0.32) 0%, rgba(251, 146, 60, 0) 43%),
+                radial-gradient(circle at 55% 48%, rgba(34, 197, 94, 0.30) 0%, rgba(34, 197, 94, 0) 45%),
+                radial-gradient(circle at 18% 52%, rgba(56, 189, 248, 0.32) 0%, rgba(56, 189, 248, 0) 43%);
+            background-size: 130% 130%;
+            animation: ambientOrbitSecondary 5s cubic-bezier(0.37, 0, 0.63, 1) infinite;
         }
 
-        @keyframes ambientMeshFloatNight {
+        /* Seamless 360-degree continuous orbital motion (zero turnaround pause, 100% GPU translate3d + scale) */
+        @keyframes ambientOrbitPrimary {
             0% {
-                transform: translate3d(-5%, -4%, 0) scale(1.02) rotate(0deg);
+                transform: translate3d(-6%, -4%, 0) scale(1.03);
+            }
+            25% {
+                transform: translate3d(5%, -6%, 0) scale(1.08);
             }
             50% {
-                transform: translate3d(5%, 4%, 0) scale(1.09) rotate(3deg);
+                transform: translate3d(7%, 5%, 0) scale(1.05);
+            }
+            75% {
+                transform: translate3d(-5%, 6%, 0) scale(1.09);
             }
             100% {
-                transform: translate3d(-4%, 5%, 0) scale(1.04) rotate(-3deg);
-            }
-        }
-
-        @keyframes ambientMeshCounterNight {
-            0% {
-                transform: translate3d(4%, 4%, 0) scale(1.03);
-            }
-            50% {
-                transform: translate3d(-5%, -4%, 0) scale(1.1) rotate(-2deg);
-            }
-            100% {
-                transform: translate3d(5%, -5%, 0) scale(1.05) rotate(2deg);
+                transform: translate3d(-6%, -4%, 0) scale(1.03);
             }
         }
 
-        @keyframes ambientMeshFloatDay {
+        @keyframes ambientOrbitSecondary {
             0% {
-                transform: translate3d(-5%, -4%, 0) scale(1.02) rotate(0deg);
+                transform: translate3d(6%, 5%, 0) scale(1.04);
+            }
+            25% {
+                transform: translate3d(-5%, 6%, 0) scale(1.09);
             }
             50% {
-                transform: translate3d(5%, 4%, 0) scale(1.09) rotate(3deg);
+                transform: translate3d(-7%, -5%, 0) scale(1.03);
+            }
+            75% {
+                transform: translate3d(5%, -6%, 0) scale(1.08);
             }
             100% {
-                transform: translate3d(-4%, 5%, 0) scale(1.04) rotate(-3deg);
-            }
-        }
-
-        @keyframes ambientMeshCounterDay {
-            0% {
-                transform: translate3d(4%, 4%, 0) scale(1.03);
-            }
-            50% {
-                transform: translate3d(-5%, -4%, 0) scale(1.1) rotate(-2deg);
-            }
-            100% {
-                transform: translate3d(5%, -5%, 0) scale(1.05) rotate(2deg);
+                transform: translate3d(6%, 5%, 0) scale(1.04);
             }
         }
 
@@ -863,7 +857,6 @@
         }
 
         body:not(.light-theme) .download-action-btn,
-        body:not(.light-theme) #pwa-brand-icon,
         body:not(.light-theme) #header-menu-btn {
             background: rgba(25, 34, 52, 0.64) !important;
         }
@@ -885,7 +878,6 @@
         }
 
         body.light-theme .download-action-btn,
-        body.light-theme #pwa-brand-icon,
         body.light-theme #header-menu-btn {
             background: rgba(255, 255, 255, 0.68) !important;
         }
@@ -899,7 +891,7 @@
 
     <header class="w-full max-w-4xl flex justify-between items-center py-3 px-4 mb-2 border-b border-gray-700/50">
         <div class="flex items-center gap-3">
-            <!-- أيقونة التحميل الواضحة في المكان المحدد قرب كلمة (نظام حساب الساعات) -->
+            <!-- أيقونة التحميل (تُزال بالكامل عند تثبيت الموقع كـ PWA) -->
             <button
                 type="button"
                 id="app-logo-btn"
@@ -913,18 +905,12 @@
                     <path d="M4 15v3.2A1.8 1.8 0 0 0 5.8 20h12.4a1.8 1.8 0 0 0 1.8-1.8V15" />
                 </svg>
             </button>
-
-            <!-- وضع التطبيق المثبت (PWA): أيقونة مبسطة عند التثبيت -->
-            <div
-                id="pwa-brand-icon"
-                title="التطبيق مثبت"
-                class="hidden w-10 h-10 rounded-xl border flex items-center justify-center shrink-0 select-none">
-                <svg viewBox="0 0 24 24" class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M12 4v10" />
-                    <path d="m7.5 10 4.5 4.5 4.5-4.5" />
-                    <path d="M4 15v3.2A1.8 1.8 0 0 0 5.8 20h12.4a1.8 1.8 0 0 0 1.8-1.8V15" />
-                </svg>
-            </div>
+            <script>
+                if (window.matchMedia('(display-mode: standalone)').matches || window.matchMedia('(display-mode: fullscreen)').matches || window.navigator.standalone === true) {
+                    var _b = document.getElementById('app-logo-btn');
+                    if (_b) _b.style.display = 'none';
+                }
+            </script>
 
             <span class="font-bold text-lg text-gray-200">نظام حساب الساعات</span>
         </div>
@@ -1382,16 +1368,15 @@
 
         function updateLogoInstallState() {
             const logoBtn = document.getElementById('app-logo-btn');
-            const pwaIcon = document.getElementById('pwa-brand-icon');
-            if (!logoBtn || !pwaIcon) return;
+            if (!logoBtn) return;
 
             if (isRunningAsInstalledApp()) {
                 deferredInstallPrompt = null;
                 logoBtn.classList.add('hidden');
-                pwaIcon.classList.remove('hidden');
+                logoBtn.style.display = 'none';
             } else {
-                pwaIcon.classList.add('hidden');
                 logoBtn.classList.remove('hidden');
+                logoBtn.style.display = '';
                 logoBtn.classList.add('can-install');
             }
         }
@@ -1413,7 +1398,6 @@
 
         async function handleLogoClick() {
             if (isRunningAsInstalledApp()) {
-                showToast("التطبيق مثبت مسبقاً على جهازك");
                 return;
             }
             if (deferredInstallPrompt) {
