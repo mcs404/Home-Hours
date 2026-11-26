@@ -59,7 +59,7 @@
             --glass-border-strong: rgba(255, 255, 255, 0.22);
             --glass-specular: inset 0 1px 0 0 rgba(255, 255, 255, 0.18);
             --glass-specular-soft: inset 0 1px 0 0 rgba(255, 255, 255, 0.10);
-            --glass-blur: blur(24px) saturate(185%);
+            --glass-blur: blur(18px) saturate(165%);
             --glass-blur-heavy: blur(32px) saturate(200%);
 
             --text-primary: #f8fafc;
@@ -169,24 +169,49 @@
         }
 
         #admin-panel-modal {
-            background: var(--glass-surface-strong) !important;
-            backdrop-filter: var(--glass-blur-heavy);
-            -webkit-backdrop-filter: var(--glass-blur-heavy);
+            background: rgba(17, 22, 34, 0.94) !important;
+            backdrop-filter: blur(10px) saturate(140%);
+            -webkit-backdrop-filter: blur(10px) saturate(140%);
+            transform: translateZ(0);
+            will-change: opacity, transform;
+            contain: strict;
+        }
+
+        body.light-theme #admin-panel-modal {
+            background: rgba(241, 245, 249, 0.95) !important;
         }
 
         #admin-panel-modal > div {
             background: transparent !important;
             border: none !important;
             box-shadow: none !important;
+            transform: translateZ(0);
+            contain: layout style paint;
+        }
+
+        #admin-panel-modal .overflow-y-auto {
+            -webkit-overflow-scrolling: touch;
+            transform: translateZ(0);
+            contain: layout style;
+        }
+
+        #admin-users-container {
+            -webkit-overflow-scrolling: touch;
+            transform: translateZ(0);
+            contain: content;
+        }
+
+        #admin-users-ul li {
+            content-visibility: auto;
+            contain-intrinsic-size: 40px;
         }
 
         .bg-inputBg {
             background: var(--glass-input) !important;
-            backdrop-filter: blur(14px) saturate(160%);
-            -webkit-backdrop-filter: blur(14px) saturate(160%);
             border: 1px solid var(--glass-border) !important;
             box-shadow: var(--glass-specular-soft);
             color: var(--text-primary) !important;
+            contain: layout paint;
         }
 
         select,
@@ -210,17 +235,32 @@
             outline: none !important;
         }
 
-        /* iOS Sliders */
+        /* iOS Sliders (60fps Hardware-Accelerated) */
         input[type=range] {
             -webkit-appearance: none;
             appearance: none;
             border-radius: 999px;
             height: 9px;
             outline: none;
+            touch-action: pan-y;
+            transform: translateZ(0);
             --progress: 0%;
+            --start-color: #22c55e;
+            --active-color: #22c55e;
+            --track-bg: rgba(148, 163, 184, 0.22);
             --thumb-color: #22c55e;
-            --thumb-shadow: rgba(34, 197, 94, 0.45);
-            background: linear-gradient(to left, #22c55e var(--progress), rgba(148, 163, 184, 0.28) var(--progress)) !important;
+            --thumb-shadow: rgba(34, 197, 94, 0.5);
+            background-color: var(--track-bg) !important;
+            background-image:
+                linear-gradient(to left, var(--start-color) 0%, var(--active-color) 100%),
+                linear-gradient(to left, var(--track-bg) 0%, var(--track-bg) 100%) !important;
+            background-position: right center, right center !important;
+            background-size: var(--progress) 100%, 100% 100% !important;
+            background-repeat: no-repeat !important;
+        }
+
+        body.light-theme input[type=range] {
+            --track-bg: rgba(148, 163, 184, 0.32);
         }
 
         input[type=range]::-webkit-slider-thumb {
@@ -232,8 +272,8 @@
             background: var(--thumb-color, #22c55e);
             border: 2.5px solid rgba(255, 255, 255, 0.95);
             cursor: pointer;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.26), 0 0 12px var(--thumb-shadow, rgba(34, 197, 94, 0.45));
-            transition: transform 0.16s var(--ios-spring), background-color 0.15s ease, box-shadow 0.15s ease;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.26), 0 0 12px var(--thumb-shadow, rgba(34, 197, 94, 0.5));
+            transition: transform 0.14s var(--ios-spring);
         }
 
         input[type=range]::-moz-range-thumb {
@@ -243,8 +283,8 @@
             border-radius: 50%;
             background: var(--thumb-color, #22c55e);
             cursor: pointer;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.26), 0 0 12px var(--thumb-shadow, rgba(34, 197, 94, 0.45));
-            transition: transform 0.16s var(--ios-spring), background-color 0.15s ease, box-shadow 0.15s ease;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.26), 0 0 12px var(--thumb-shadow, rgba(34, 197, 94, 0.5));
+            transition: transform 0.14s var(--ios-spring);
         }
 
         input[type=range]::-webkit-slider-thumb:hover {
@@ -688,7 +728,7 @@
         }
 
     
-        /* Animated Ambient Background Orbs Visible Through Frosted Glass */
+        /* Animated Ambient Background Orbs Visible Through Frosted Glass (GPU-Composited, Zero Repaint) */
         #theme-atmosphere-overlay {
             position: fixed !important;
             inset: -12% !important;
@@ -698,8 +738,8 @@
             z-index: 0 !important;
             overflow: hidden !important;
             background: transparent !important;
-            filter: blur(50px) saturate(155%);
-            will-change: transform, opacity;
+            contain: strict;
+            transform: translateZ(0);
         }
 
         #theme-atmosphere-overlay::before,
@@ -708,7 +748,8 @@
             position: absolute;
             inset: 0;
             pointer-events: none;
-            will-change: transform, background-position, opacity;
+            will-change: transform;
+            backface-visibility: hidden;
             transition: opacity 0.55s var(--ios-ease);
         }
 
@@ -720,7 +761,7 @@
                 radial-gradient(circle at 82% 28%, rgba(168, 85, 247, 0.46) 0%, rgba(168, 85, 247, 0) 46%),
                 radial-gradient(circle at 52% 78%, rgba(34, 197, 94, 0.44) 0%, rgba(34, 197, 94, 0) 48%);
             background-size: 140% 140%;
-            animation: ambientMeshFloatNight 18s ease-in-out infinite alternate;
+            animation: ambientMeshFloatNight 7s ease-in-out infinite alternate;
         }
 
         #theme-atmosphere-overlay::after {
@@ -730,7 +771,7 @@
                 radial-gradient(circle at 28% 74%, rgba(168, 85, 247, 0.36) 0%, rgba(168, 85, 247, 0) 44%),
                 radial-gradient(circle at 50% 18%, rgba(34, 197, 94, 0.34) 0%, rgba(34, 197, 94, 0) 42%);
             background-size: 135% 135%;
-            animation: ambientMeshCounterNight 22s ease-in-out infinite alternate-reverse;
+            animation: ambientMeshCounterNight 8.5s ease-in-out infinite alternate-reverse;
         }
 
         /* Day Mode: Green (#22c55e), Yellow (#facc15), Sky Blue (#38bdf8), Orange (#fb923c) */
@@ -742,7 +783,7 @@
                 radial-gradient(circle at 26% 78%, rgba(250, 204, 21, 0.40) 0%, rgba(250, 204, 21, 0) 45%),
                 radial-gradient(circle at 78% 76%, rgba(251, 146, 60, 0.38) 0%, rgba(251, 146, 60, 0) 45%);
             background-size: 145% 145%;
-            animation: ambientMeshFloatDay 18s ease-in-out infinite alternate;
+            animation: ambientMeshFloatDay 7s ease-in-out infinite alternate;
         }
 
         body.light-theme #theme-atmosphere-overlay::after {
@@ -753,66 +794,54 @@
                 radial-gradient(circle at 55% 48%, rgba(34, 197, 94, 0.28) 0%, rgba(34, 197, 94, 0) 44%),
                 radial-gradient(circle at 16% 52%, rgba(56, 189, 248, 0.30) 0%, rgba(56, 189, 248, 0) 42%);
             background-size: 140% 140%;
-            animation: ambientMeshCounterDay 22s ease-in-out infinite alternate-reverse;
+            animation: ambientMeshCounterDay 8.5s ease-in-out infinite alternate-reverse;
         }
 
         @keyframes ambientMeshFloatNight {
             0% {
-                transform: translate3d(-3%, -2%, 0) scale(1) rotate(0deg);
-                background-position: 0% 0%;
+                transform: translate3d(-5%, -4%, 0) scale(1.02) rotate(0deg);
             }
             50% {
-                transform: translate3d(3%, 2%, 0) scale(1.06) rotate(2deg);
-                background-position: 60% 40%;
+                transform: translate3d(5%, 4%, 0) scale(1.09) rotate(3deg);
             }
             100% {
-                transform: translate3d(-2%, 3%, 0) scale(1.03) rotate(-2deg);
-                background-position: 100% 100%;
+                transform: translate3d(-4%, 5%, 0) scale(1.04) rotate(-3deg);
             }
         }
 
         @keyframes ambientMeshCounterNight {
             0% {
-                transform: translate3d(2%, 2%, 0) scale(1.02);
-                background-position: 100% 0%;
+                transform: translate3d(4%, 4%, 0) scale(1.03);
             }
             50% {
-                transform: translate3d(-3%, -2%, 0) scale(1.08);
-                background-position: 30% 70%;
+                transform: translate3d(-5%, -4%, 0) scale(1.1) rotate(-2deg);
             }
             100% {
-                transform: translate3d(3%, -3%, 0) scale(1.04);
-                background-position: 0% 100%;
+                transform: translate3d(5%, -5%, 0) scale(1.05) rotate(2deg);
             }
         }
 
         @keyframes ambientMeshFloatDay {
             0% {
-                transform: translate3d(-3%, -2%, 0) scale(1) rotate(0deg);
-                background-position: 0% 0%;
+                transform: translate3d(-5%, -4%, 0) scale(1.02) rotate(0deg);
             }
             50% {
-                transform: translate3d(3%, 2%, 0) scale(1.06) rotate(2deg);
-                background-position: 65% 35%;
+                transform: translate3d(5%, 4%, 0) scale(1.09) rotate(3deg);
             }
             100% {
-                transform: translate3d(-2%, 3%, 0) scale(1.03) rotate(-2deg);
-                background-position: 100% 100%;
+                transform: translate3d(-4%, 5%, 0) scale(1.04) rotate(-3deg);
             }
         }
 
         @keyframes ambientMeshCounterDay {
             0% {
-                transform: translate3d(2%, 2%, 0) scale(1.02);
-                background-position: 100% 0%;
+                transform: translate3d(4%, 4%, 0) scale(1.03);
             }
             50% {
-                transform: translate3d(-3%, -2%, 0) scale(1.08);
-                background-position: 35% 65%;
+                transform: translate3d(-5%, -4%, 0) scale(1.1) rotate(-2deg);
             }
             100% {
-                transform: translate3d(3%, -3%, 0) scale(1.04);
-                background-position: 0% 100%;
+                transform: translate3d(5%, -5%, 0) scale(1.05) rotate(2deg);
             }
         }
 
@@ -1110,7 +1139,7 @@
                 <i class="fa-solid fa-lock"></i>
             </div>
             <h3 class="text-lg font-bold text-white mb-1">قسم الإدارة</h3>
-            <p class="text-xs text-white-400 mb-4">أدخل الرمز للوصول للوحة التحكم</p>
+            <p class="text-xs text-gray-400 mb-4">أدخل الرمز للوصول للوحة التحكم</p>
 
             <form onsubmit="handleAdminAuth(event)">
                 <div class="relative flex items-center mb-3">
@@ -1150,7 +1179,7 @@
         <div class="w-full h-full p-4 sm:p-6 text-right flex flex-col overflow-hidden bg-cardBg">
             <div class="flex justify-between items-center border-b border-gray-700/40 pb-4 mb-4">
                 <div class="flex items-center space-x-2 space-x-reverse text-emerald-400">
-                    <i class="fa-solid fa-sliders text-xl"></i>
+                    <i class="fa-solid fa-user-gear text-xl"></i>
                     <h3 class="text-xl font-bold text-white">لوحة التحكم</h3>
                 </div>
                 <button onclick="closeAdminPanel()" class="text-gray-400 hover:text-white p-2 rounded-xl text-lg">
@@ -1446,28 +1475,21 @@
         function updateSliderGradientAndThumb(slider, isFriday = false) {
             if (!slider) return;
 
-            const min = parseFloat(slider.min) || 0;
-            const max = parseFloat(slider.max) || (isFriday ? 100 : 200);
-            const val = parseFloat(slider.value) || 0;
+            const min = Number(slider.min) || 0;
+            const max = Number(slider.max) || (isFriday ? 50 : 150);
+            const val = Number(slider.value) || 0;
 
             const percentage = max > min ? ((val - min) / (max - min)) * 100 : 0;
             const clampedPercent = Math.max(0, Math.min(100, percentage));
 
             const activeColor = getHourRangeColor(val, isFriday);
             const startColor = getHourRangeColor(Math.max(min, 1), isFriday);
-            const isLight = document.body.classList.contains('light-theme');
-            const trackBg = isLight ? 'rgba(148, 163, 184, 0.32)' : 'rgba(148, 163, 184, 0.22)';
-
-            const filledGradient = `linear-gradient(to left, ${startColor} 0%, ${activeColor} 100%)`;
 
             slider.style.setProperty('--progress', `${clampedPercent}%`);
-            slider.style.setProperty('background', `${filledGradient}, linear-gradient(to left, ${trackBg} 0%, ${trackBg} 100%)`, 'important');
-
+            slider.style.setProperty('--start-color', startColor);
+            slider.style.setProperty('--active-color', activeColor);
             slider.style.setProperty('--thumb-color', activeColor);
             slider.style.setProperty('--thumb-shadow', `${activeColor}80`);
-            slider.style.setProperty('background-position', `right center, right center`, 'important');
-            slider.style.setProperty('background-size', `${clampedPercent}% 100%, 100% 100%`, 'important');
-            slider.style.setProperty('background-repeat', 'no-repeat', 'important');
         }
 
         function refreshAllSlidersGradient() {
@@ -1668,17 +1690,23 @@
                 return;
             }
 
+            const frag = document.createDocumentFragment();
             filtered.forEach(name => {
                 const li = document.createElement('li');
                 li.className = 'flex justify-between items-center p-2.5 hover:bg-inputBg/50 transition';
-                li.innerHTML = `
-                    <span class="font-medium text-gray-200">${name}</span>
-                    <button onclick="deleteUser('${name}')" title="حذف المستخدم" class="text-red-400 hover:text-red-300 p-1 transition">
-                        <i class="fa-solid fa-trash-can"></i>
-                    </button>
-                `;
-                ul.appendChild(li);
+                const span = document.createElement('span');
+                span.className = 'font-medium text-gray-200';
+                span.textContent = name;
+                const btn = document.createElement('button');
+                btn.title = 'حذف المستخدم';
+                btn.className = 'text-red-400 hover:text-red-300 p-1 transition';
+                btn.innerHTML = '<i class="fa-solid fa-trash-can"></i>';
+                btn.onclick = () => deleteUser(name);
+                li.appendChild(span);
+                li.appendChild(btn);
+                frag.appendChild(li);
             });
+            ul.appendChild(frag);
         }
 
         function filterUsersList(val) {
@@ -1774,29 +1802,49 @@
             }
         }
 
+        const sliderRafPending = { reg: false, fri: false };
+        const cachedSliderEls = {};
+
+        function getSliderPair(type) {
+            if (!cachedSliderEls[type]) {
+                cachedSliderEls[type] = {
+                    slider: document.getElementById(`${type}-hours-slider`),
+                    input: document.getElementById(`${type}-hours-input`)
+                };
+            }
+            return cachedSliderEls[type];
+        }
+
         function updateSliderProgress(type, value) {
-            const slider = document.getElementById(`${type}-hours-slider`);
-            const min = parseFloat(slider.min) || 0;
-            const max = parseFloat(slider.max) || 300;
-            const num = Math.max(min, Math.min(max, parseFloat(value) || 0));
+            const { slider } = getSliderPair(type);
+            if (!slider) return;
+            const min = Number(slider.min) || 0;
+            const max = Number(slider.max) || 300;
+            const num = Math.max(min, Math.min(max, Number(value) || 0));
             const percent = ((num - min) / (max - min)) * 100;
             slider.style.setProperty('--progress', `${percent}%`);
         }
 
         function syncHours(type, source) {
-            const slider = document.getElementById(`${type}-hours-slider`);
-            const input = document.getElementById(`${type}-hours-input`);
+            const { slider, input } = getSliderPair(type);
+            if (!slider || !input) return;
 
             if (source === 'slider') {
                 input.value = slider.value;
             } else {
-                const val = Math.max(0, Math.min(300, parseInt(slider.value) || 0));
+                const val = Math.max(0, Math.min(300, parseInt(slider.value, 10) || 0));
                 slider.value = val;
                 input.value = val;
             }
-            updateSliderProgress(type, slider.value);
-            updateSliderGradientAndThumb(slider, type === 'fri');
-            updateLiveTotal();
+
+            if (sliderRafPending[type]) return;
+            sliderRafPending[type] = true;
+
+            requestAnimationFrame(() => {
+                sliderRafPending[type] = false;
+                updateSliderGradientAndThumb(slider, type === 'fri');
+                updateLiveTotal();
+            });
         }
 
         function handleManualInput(type, value) {
@@ -1821,11 +1869,15 @@
             updateLiveTotal();
         }
 
+        let cachedTotalDisplay = null;
         function updateLiveTotal() {
-            const reg = parseInt(document.getElementById('reg-hours-input').value) || 0;
-            const fri = parseInt(document.getElementById('fri-hours-input').value) || 0;
+            const regEl = getSliderPair('reg').input;
+            const friEl = getSliderPair('fri').input;
+            if (!cachedTotalDisplay) cachedTotalDisplay = document.getElementById('live-total-display');
+            const reg = parseInt(regEl ? regEl.value : '0', 10) || 0;
+            const fri = parseInt(friEl ? friEl.value : '0', 10) || 0;
             const total = reg + fri;
-            document.getElementById('live-total-display').textContent = total + ' ساعة';
+            if (cachedTotalDisplay) cachedTotalDisplay.textContent = total + ' ساعة';
             return { reg, fri, total };
         }
 
@@ -1920,9 +1972,12 @@
         }
 
         function openAdminPanel() {
-            renderAdminUsersList();
-            populateExportFilters();
-            document.getElementById('admin-panel-modal').classList.remove('hidden');
+            const modal = document.getElementById('admin-panel-modal');
+            modal.classList.remove('hidden');
+            requestAnimationFrame(() => {
+                renderAdminUsersList();
+                populateExportFilters();
+            });
         }
 
         function populateExportFilters() {
