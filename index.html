@@ -431,8 +431,8 @@
             pointer-events: auto !important;
             text-align: right !important;
             background: var(--glass-surface-strong) !important;
-            backdrop-filter: var(--glass-blur-heavy) !important;
-            -webkit-backdrop-filter: var(--glass-blur-heavy) !important;
+            backdrop-filter: var(--glass-blur-heavy);
+            -webkit-backdrop-filter: var(--glass-blur-heavy);
             border: 1px solid var(--glass-border-strong) !important;
             box-shadow: var(--shadow-dropdown), var(--glass-specular) !important;
             transform-origin: top left;
@@ -630,22 +630,6 @@
             to { opacity: 1; transform: translate(-50%, -50%) scale(1); }
         }
 
-        #admin-auth-modal button i {
-            color: #94a3b8 !important;
-        }
-
-        #admin-auth-modal button:hover i {
-            color: #10b981 !important;
-        }
-
-        body.light-theme #admin-auth-modal button i {
-            color: #475569 !important;
-        }
-
-        body.light-theme #admin-auth-modal button:hover i {
-            color: #15803d !important;
-        }
-
         #admin-panel-modal *::-webkit-scrollbar {
             width: 0px;
             height: 0px;
@@ -668,50 +652,7 @@
                 animation-duration: 0.01ms !important;
             }
         }
-    
-        /* Clean Theme-Matched Password Eye Toggle Buttons (No Grey Box in Light Mode) */
-        #login-section form button[type="button"],
-        #admin-auth-modal form button[type="button"] {
-            background: transparent !important;
-            border: 0 !important;
-            box-shadow: none !important;
-            backdrop-filter: none !important;
-            -webkit-backdrop-filter: none !important;
-            color: #94a3b8 !important;
-        }
 
-        #login-section form button[type="button"] i,
-        #admin-auth-modal form button[type="button"] i {
-            color: #94a3b8 !important;
-            background: transparent !important;
-            transition: color 0.2s var(--ios-ease), transform 0.16s var(--ios-spring) !important;
-        }
-
-        #login-section form button[type="button"]:hover i,
-        #admin-auth-modal form button[type="button"]:hover i {
-            color: #4ade80 !important;
-        }
-
-        body.light-theme #login-section form button[type="button"],
-        body.light-theme #admin-auth-modal form button[type="button"] {
-            background: transparent !important;
-            border: 0 !important;
-            box-shadow: none !important;
-            color: #475569 !important;
-        }
-
-        body.light-theme #login-section form button[type="button"] i,
-        body.light-theme #admin-auth-modal form button[type="button"] i {
-            color: #475569 !important;
-            background: transparent !important;
-        }
-
-        body.light-theme #login-section form button[type="button"]:hover i,
-        body.light-theme #admin-auth-modal form button[type="button"]:hover i {
-            color: #15803d !important;
-        }
-
-    
         /* Admin Auth Modal Cancel Button ("إلغاء"): Grey background + border + crisp white text in both modes */
         #admin-auth-modal form button[type="button"]:not([onclick*="togglePasswordVisibility"]),
         body.light-theme #admin-auth-modal form button[type="button"]:not([onclick*="togglePasswordVisibility"]) {
@@ -732,7 +673,6 @@
             border-color: rgba(255, 255, 255, 0.35) !important;
         }
 
-    
         /* Animated Ambient Background Orbs Visible Through Frosted Glass (Ultra-Smooth, Fast & 100% GPU-Composited) */
         #theme-atmosphere-overlay {
             position: fixed !important;
@@ -882,6 +822,117 @@
             background: rgba(255, 255, 255, 0.68) !important;
         }
 
+        /* Custom Password Eye Icons (Matches Reference Style + Theme Cohesive, Zero Grey on Light Hover) */
+        .custom-eye-toggle {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: #e2e8f0;
+            transition: color 0.2s var(--ios-ease), transform 0.16s var(--ios-spring);
+        }
+
+        .custom-eye-toggle .eye-svg {
+            width: 1.7rem;
+            height: 1.25rem;
+            display: block;
+            transition: opacity 0.2s var(--ios-ease), transform 0.2s var(--ios-spring), color 0.2s var(--ios-ease);
+        }
+
+        .custom-eye-toggle .eye-highlight {
+            fill: #121824;
+            transition: fill 0.25s var(--ios-ease);
+        }
+
+        /* Default state: password hidden -> show closed lash arc, hide open eye */
+        .custom-eye-toggle[data-revealed="false"] .eye-closed {
+            display: block;
+            opacity: 1;
+            transform: scale(1);
+        }
+        .custom-eye-toggle[data-revealed="false"] .eye-open {
+            display: none;
+            opacity: 0;
+            transform: scale(0.9);
+        }
+
+        /* Revealed state: password visible -> show open eye, hide closed lash arc */
+        .custom-eye-toggle[data-revealed="true"] .eye-closed {
+            display: none;
+            opacity: 0;
+            transform: scale(0.9);
+        }
+        .custom-eye-toggle[data-revealed="true"] .eye-open {
+            display: block;
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        /* Dark Mode eye toggle button */
+        #login-section form button[type="button"],
+        #admin-auth-modal form button[type="button"] {
+            background: transparent !important;
+            background-color: transparent !important;
+            border: 0 !important;
+            box-shadow: none !important;
+            backdrop-filter: none !important;
+            -webkit-backdrop-filter: none !important;
+            color: #e2e8f0 !important;
+        }
+
+        #login-section form button[type="button"]:hover,
+        #admin-auth-modal form button[type="button"]:hover {
+            background: transparent !important;
+            background-color: transparent !important;
+            color: #4ade80 !important;
+        }
+
+        #login-section form button[type="button"]:hover .custom-eye-toggle,
+        #admin-auth-modal form button[type="button"]:hover .custom-eye-toggle {
+            color: #4ade80 !important;
+            transform: scale(1.06);
+        }
+
+        /* Light Mode: strictly theme-cohesive dark ink & green accent on hover - NEVER grey */
+        body.light-theme #login-section form button[type="button"],
+        body.light-theme #admin-auth-modal form button[type="button"] {
+            background: transparent !important;
+            background-color: transparent !important;
+            border: 0 !important;
+            box-shadow: none !important;
+            backdrop-filter: none !important;
+            -webkit-backdrop-filter: none !important;
+            color: #0f172a !important;
+        }
+
+        body.light-theme #login-section form button[type="button"] .custom-eye-toggle,
+        body.light-theme #admin-auth-modal form button[type="button"] .custom-eye-toggle {
+            color: #0f172a !important;
+        }
+
+        body.light-theme #login-section form button[type="button"] .eye-highlight,
+        body.light-theme #admin-auth-modal form button[type="button"] .eye-highlight {
+            fill: #f4f7fb !important;
+        }
+
+        body.light-theme #login-section form button[type="button"]:hover,
+        body.light-theme #login-section form button[type="button"]:focus,
+        body.light-theme #login-section form button[type="button"]:active,
+        body.light-theme #admin-auth-modal form button[type="button"]:hover,
+        body.light-theme #admin-auth-modal form button[type="button"]:focus,
+        body.light-theme #admin-auth-modal form button[type="button"]:active {
+            background: transparent !important;
+            background-color: transparent !important;
+            color: #059669 !important;
+        }
+
+        body.light-theme #login-section form button[type="button"]:hover .custom-eye-toggle,
+        body.light-theme #login-section form button[type="button"]:focus .custom-eye-toggle,
+        body.light-theme #admin-auth-modal form button[type="button"]:hover .custom-eye-toggle,
+        body.light-theme #admin-auth-modal form button[type="button"]:focus .custom-eye-toggle {
+            color: #059669 !important;
+            transform: scale(1.06);
+        }
     </style>
 </head>
 <body class="min-h-screen flex flex-col justify-between items-center p-4 selection:bg-green-500 selection:text-white">
@@ -967,7 +1018,23 @@
                         onclick="togglePasswordVisibility('passcode-input', 'toggle-eye-icon')"
                         class="absolute left-3 transition-colors duration-200 p-2 focus:outline-none"
                         title="إظهار/إخفاء كلمة المرور">
-                        <i id="toggle-eye-icon" class="fa-solid fa-eye-slash text-xl transition-all duration-300"></i>
+                        <span id="toggle-eye-icon" class="custom-eye-toggle inline-flex items-center justify-center select-none pointer-events-none" data-revealed="false"><svg viewBox="0 0 36 24" class="eye-svg eye-closed w-7 h-5 overflow-visible" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <path d="M5 7.5 C10.5 16.5, 25.5 16.5, 31 7.5" stroke-width="2.5" />
+    <line x1="8.2" y1="11.4" x2="4.2" y2="15.4" stroke-width="2.3" />
+    <line x1="13.2" y1="13.9" x2="11.2" y2="19.2" stroke-width="2.3" />
+    <line x1="18" y1="14.5" x2="18" y2="20.2" stroke-width="2.3" />
+    <line x1="22.8" y1="13.9" x2="24.8" y2="19.2" stroke-width="2.3" />
+    <line x1="27.8" y1="11.4" x2="31.8" y2="15.4" stroke-width="2.3" />
+</svg><svg viewBox="0 0 36 26" class="eye-svg eye-open w-7 h-5 overflow-visible" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <line x1="8.2" y1="9.8" x2="4.2" y2="5.4" stroke-width="2.2" />
+    <line x1="13.2" y1="7.4" x2="11.2" y2="2.4" stroke-width="2.2" />
+    <line x1="18" y1="6.8" x2="18" y2="1.8" stroke-width="2.2" />
+    <line x1="22.8" y1="7.4" x2="24.8" y2="2.4" stroke-width="2.2" />
+    <line x1="27.8" y1="9.8" x2="31.8" y2="5.4" stroke-width="2.2" />
+    <path d="M4.5 14.5 C9.5 6.2, 26.5 6.2, 31.5 14.5 C26.5 22.8, 9.5 22.8, 4.5 14.5 Z" stroke-width="2.4" />
+    <circle cx="19.2" cy="14.5" r="5.6" fill="currentColor" stroke="none" />
+    <path d="M16.2 10.6 A4.6 4.6 0 0 0 16.2 18.4 A3.6 3.6 0 0 1 16.2 10.6 Z" class="eye-highlight" stroke="none" />
+</svg></span>
                     </button>
                 </div>
 
@@ -1139,8 +1206,25 @@
                     <button
                         type="button"
                         onclick="togglePasswordVisibility('admin-passcode-input', 'admin-toggle-eye-icon')"
-                        class="absolute left-3 text-gray-400 hover:text-emerald-400 transition-colors duration-200 focus:outline-none">
-                        <i id="admin-toggle-eye-icon" class="fa-solid fa-eye-slash text-lg transition-all duration-300"></i>
+                        class="absolute left-3 transition-colors duration-200 focus:outline-none"
+                        title="إظهار/إخفاء كلمة المرور">
+                        <span id="admin-toggle-eye-icon" class="custom-eye-toggle inline-flex items-center justify-center select-none pointer-events-none" data-revealed="false"><svg viewBox="0 0 36 24" class="eye-svg eye-closed w-7 h-5 overflow-visible" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <path d="M5 7.5 C10.5 16.5, 25.5 16.5, 31 7.5" stroke-width="2.5" />
+    <line x1="8.2" y1="11.4" x2="4.2" y2="15.4" stroke-width="2.3" />
+    <line x1="13.2" y1="13.9" x2="11.2" y2="19.2" stroke-width="2.3" />
+    <line x1="18" y1="14.5" x2="18" y2="20.2" stroke-width="2.3" />
+    <line x1="22.8" y1="13.9" x2="24.8" y2="19.2" stroke-width="2.3" />
+    <line x1="27.8" y1="11.4" x2="31.8" y2="15.4" stroke-width="2.3" />
+</svg><svg viewBox="0 0 36 26" class="eye-svg eye-open w-7 h-5 overflow-visible" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <line x1="8.2" y1="9.8" x2="4.2" y2="5.4" stroke-width="2.2" />
+    <line x1="13.2" y1="7.4" x2="11.2" y2="2.4" stroke-width="2.2" />
+    <line x1="18" y1="6.8" x2="18" y2="1.8" stroke-width="2.2" />
+    <line x1="22.8" y1="7.4" x2="24.8" y2="2.4" stroke-width="2.2" />
+    <line x1="27.8" y1="9.8" x2="31.8" y2="5.4" stroke-width="2.2" />
+    <path d="M4.5 14.5 C9.5 6.2, 26.5 6.2, 31.5 14.5 C26.5 22.8, 9.5 22.8, 4.5 14.5 Z" stroke-width="2.4" />
+    <circle cx="19.2" cy="14.5" r="5.6" fill="currentColor" stroke="none" />
+    <path d="M16.2 10.6 A4.6 4.6 0 0 0 16.2 18.4 A3.6 3.6 0 0 1 16.2 10.6 Z" class="eye-highlight" stroke="none" />
+</svg></span>
                     </button>
                 </div>
 
@@ -1764,8 +1848,9 @@
             const icon = document.getElementById(iconId);
             const isHidden = input.type === 'password';
             input.type = isHidden ? 'text' : 'password';
-            icon.classList.toggle('fa-eye-slash', !isHidden);
-            icon.classList.toggle('fa-eye', isHidden);
+            if (icon) {
+                icon.setAttribute('data-revealed', isHidden ? 'true' : 'false');
+            }
         }
 
         function convertArabicDigitsToEnglish(str) {
@@ -1932,7 +2017,11 @@
         }
 
         function openAdminAuthModal() {
-            document.getElementById('admin-passcode-input').value = '';
+            const adminInput = document.getElementById('admin-passcode-input');
+            const adminEye = document.getElementById('admin-toggle-eye-icon');
+            adminInput.value = '';
+            adminInput.type = 'password';
+            if (adminEye) adminEye.setAttribute('data-revealed', 'false');
             document.getElementById('admin-auth-error').classList.add('hidden');
             document.getElementById('admin-auth-modal').classList.remove('hidden');
         }
@@ -2069,7 +2158,7 @@
 
             toastMsg.textContent = msg;
             toast.style.setProperty('color', '#ffffff', 'important');
-            toastMsg.style.setProperty('color', '#ffffff', 'important');
+            toast.style.setProperty('color', '#ffffff', 'important');
 
             toast.classList.toggle('bg-red-600', isError);
             toast.classList.toggle('bg-emerald-600/90', !isError);
